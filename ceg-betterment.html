@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEG Betterment | CEGAANA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .initiative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .initiative-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef0f2;
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s;
+            font-weight: 500;
+            color: var(--secondary-color);
+            text-align: center;
+        }
+
+        .initiative-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Adjust columns for small screens */
+        @media (max-width: 768px) {
+            .improvements-list {
+                column-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><img src="cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo"> CEG Betterment</h1>
+        <p>Make CEG Student Experience A Delight</p>
+    </header>
+
+    <div class="container">
+
+        <div class="scholarship-info">
+            <p>A survey of CEG students was conducted in May 2020 to understand what alumni can do to help make CEG
+                better. And continuously we hear from visiting alumni and students about potential new needs.</p>
+            <p style="margin-top: 15px;">The results of the survey indicated several needs as listed below. The CEG
+                Betterment project has been initiated by the CEG alumni. We receive donations and contribute to projects
+                in CEG. We have funded restroom facilities, UPS for IT labs, student counseling support, funding college
+                events, and support for student competitions.</p>
+        </div>
+
+        <h2 class="section-title">Areas for Improvement</h2>
+        <div class="card" style="padding: 2rem;">
+            <p>From the survey results, the following critical needs were identified:</p>
+            <ul class="custom-list improvements-list" style="column-count: 2; column-gap: 40px; margin-top: 15px;">
+                <li>Restroom availability and cleanliness</li>
+                <li>Study rooms at hostels (study areas)</li>
+                <li>Canteen hygiene</li>
+                <li>Laptop loans</li>
+                <li>Network connectivity in hostels and campus</li>
+                <li>Industry initiated projects (ECE and Manufacturing)</li>
+                <li>Support for participating in student competitions (India & abroad)</li>
+                <li>Internship</li>
+                <li>English communication</li>
+                <li>Personal counseling - Emotional Well-being</li>
+            </ul>
+        </div>
+
+        <h2 class="section-title">Our Initiatives</h2>
+        <p style="font-size: 1.1rem;">The CEG Betterment project has eight initiatives. You can find details about them
+            and progress on each on these pages:</p>
+
+        <div class="initiative-grid">
+            <a href="projects/campus-betterment.html" style="text-decoration: none;">
+                <div class="initiative-card">Campus Betterment</div>
+            </a>
+            <a href="projects/personal-betterment.html" style="text-decoration: none;">
+                <div class="initiative-card">Personal Betterment</div>
+            </a>
+            <a href="projects/industry-connections.html" style="text-decoration: none;">
+                <div class="initiative-card">Industry Connections</div>
+            </a>
+            
+            <!-- <a href="projects/campus-cleanliness.html" style="text-decoration: none;">
+                <div class="initiative-card">Campus Cleanliness</div>
+            </a>
+            <a href="projects/canteen-hygiene.html" style="text-decoration: none;">
+                <div class="initiative-card">Canteen Hygiene</div>
+            </a>
+            <a href="projects/network-connectivity.html" style="text-decoration: none;">
+                <div class="initiative-card">Network Connectivity</div>
+            </a>
+            <a href="projects/loaner-laptop.html" style="text-decoration: none;">
+                <div class="initiative-card">Loaner Laptop</div>
+            </a>
+            <a href="projects/support-for-competitions.html" style="text-decoration: none;">
+                <div class="initiative-card">Support for Student Competitions</div>
+            </a>
+            <a href="projects/english-communication.html" style="text-decoration: none;">
+                <div class="initiative-card">English Communication</div>
+            </a>
+            <a href="projects/personal-counseling.html" style="text-decoration: none;">
+                <div class="initiative-card">Personal Counseling</div>
+            </a>
+            <a href="projects/industry-collaboration.html" style="text-decoration: none;">
+                <div class="initiative-card">Industry Collaboration</div>
+            </a> -->
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="./index.html" class="btn">&larr; Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA). All Rights
+            Reserved.</p>
+        <p>142 N. Milpitas Blvd #392, Milpitas, CA 95035</p>
+    </footer>
+</body>
+
+</html>
