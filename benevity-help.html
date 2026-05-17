@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benevity Help | CEGAANA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .steps-list {
+            padding-left: 20px;
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        .steps-list li {
+            margin-bottom: 12px;
+        }
+
+        .companies-list {
+            column-count: 2;
+            column-gap: 20px;
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .companies-list {
+                column-count: 3;
+            }
+        }
+
+        .companies-list li {
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><img src="cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo"> Benevity Help</h1>
+        <p>Instructions for matching your donations using the Benevity platform</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">How to Donate via Benevity</h2>
+
+        <div class="scholarship-info">
+            <p style="font-size: 1.1rem; color: var(--secondary-color); font-weight: bold;">Thank you for supporting CEG
+                students! Please use these steps to complete your donation:</p>
+            <ol class="steps-list">
+                <li>Login into your company Benevity portal using single sign on. Usually it will be
+                    <code>&lt;companyname&gt;.benevity.org</code> (e.g., google.benevity.org).
+                </li>
+                <li>Search for <strong>"CEGAANA Scholarship"</strong> or just <strong>"CEGAANA"</strong>.</li>
+                <li>Submit your donation.</li>
+                <li>Please specify the batch in the notes section.</li>
+                <li>Once you donate, please fill your information in this <a href="./tax-receipt-form.html"
+                        style="color: var(--primary-color); font-weight: bold; text-decoration: none;">form for the tax
+                        receipt</a>.</li>
+            </ol>
+
+            <div class="batch-highlight">
+                <strong>Note:</strong> If you do not find <em>CEGAANA Scholarship</em> in your Benevity site, please
+                reach out to <a href="mailto:muralirk@gmail.com"
+                    style="color: var(--secondary-color); font-weight: bold; text-decoration: none;">finance@cegaana.org</a>
+                to help setup the organization. This will help all future donors.
+            </div>
+        </div>
+
+        <h2 class="section-title">Participating Companies</h2>
+        <div class="card">
+            <p>Companies that currently support CEGAANA via Benevity include:</p>
+            <ul class="companies-list">
+                <li>Apple</li>
+                <li>Google</li>
+                <li>Hewlett Packard Enterprise</li>
+                <li>Intel</li>
+                <li>Levi Strauss Foundation</li>
+                <li>Macys</li>
+                <li>Microsoft</li>
+                <li>Nvidia</li>
+                <li>Oracle</li>
+                <li>TransUnion</li>
+                <li>Workday</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="./cegaana_contribute.html" class="btn">&larr; Back to Contributions</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA). All Rights
+            Reserved.</p>
+        <p>142 N. Milpitas Blvd #392, Milpitas, CA 95035</p>
+    </footer>
+</body>
+
+</html>

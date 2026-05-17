@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Receipt Request | CEGAANA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-container {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eef0f2;
+            border-top: 5px solid var(--primary-color);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(192, 49, 27, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 12px;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><img src="cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo"> Tax Receipt Request</h1>
+        <p>Request a 501(c)(3) tax receipt for your generous donation</p>
+    </header>
+
+    <div class="container">
+
+        <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSd35TdG9U7s6elJcAqsJTW0jn_9oGfJjI2eLSUecJ41khIQsA/viewform?embedded=true"
+            width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+        <!-- <div class="form-container">
+        <h2 class="section-title" style="text-align: center;">Donation Details</h2>
+            
+              GOOGLE FORMS INTEGRATION INSTRUCTIONS:
+              1. Create a new Google Form in your Workspace with the fields below.
+              2. Get the form action URL (https://docs.google.com/forms/d/e/.../formResponse) and paste it below.
+              3. Get the "entry.123456" IDs for each field (you can find these by generating a 'Get pre-filled link' in Google Forms).
+              4. Replace the "name" attributes below with your actual "entry.XXXXXX" IDs.
+            -->
+        <!-- <script>
+                var submitted = false;
+            </script>
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"
+                onload="if(submitted) { window.location='thank-you.html'; }"></iframe>
+
+
+            <form action="https://docs.google.com/forms/d/e/YOUR_FORM_ID_HERE/formResponse" method="POST"
+                target="hidden_iframe" onsubmit="submitted=true;">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="entry.111111111" required placeholder="e.g. John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="entry.222222222" required placeholder="e.g. john@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="batch">CEG Batch Year</label>
+                    <input type="text" id="batch" name="entry.333333333" placeholder="e.g. 1996">
+                </div>
+
+                <div class="form-group">
+                    <label for="amount">Donation Amount (USD) *</label>
+                    <input type="number" id="amount" name="entry.444444444" required placeholder="100" min="1">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name (If Benevity / Employer Match)</label>
+                    <input type="text" id="company" name="entry.555555555" placeholder="e.g. Google">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Full Mailing Address *</label>
+                    <textarea id="address" name="entry.666666666" rows="3" required
+                        placeholder="123 Main St&#10;Apt 4B&#10;City, State, ZIP"></textarea>
+                </div>
+
+                <button type="submit" class="btn submit-btn">Submit Request</button>
+                <p style="font-size: 0.85rem; color: #666; margin-top: 15px; text-align: center;">
+                    This form securely submits directly to the CEGAANA Google Workspace.
+                </p>
+            </form> -->
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="./benevity-help.html" class="btn" style="background-color: #666;">&larr; Back to Benevity Help</a>
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA).
+            All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>
