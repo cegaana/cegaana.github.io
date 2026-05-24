@@ -1,0 +1,22 @@
+[
+  {
+    "id": 4,
+    "title": "Panel Discussion: How to Crack ML & AI Roles",
+    "date": "2026-05-29T18:00:00-07:00",
+    "timeLabel": "6:00 PM PST",
+    "location": "Google Meet",
+    "description": "Interactive career panel on navigating the ML/AI job market as a new graduate. Practical insights directly from professionals in the field.",
+    "url": "https://www.cegaana.org/events/20986",
+    "url_meet": "https://meet.google.com/koe-kpyd-nrb",
+    "panelists": [
+      {
+        "name": "Deepak Nulu",
+        "url": "https://www.linkedin.com/in/deepak-nulu"
+      },
+      {
+        "name": "Ishwarya Sivakumar",
+        "url": "https://www.linkedin.com/in/ishwarya-sivakumar"
+      }
+    ]
+  }
+]

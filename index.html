@@ -12,15 +12,15 @@
 <body>
     <header>
         <h1><img src="cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo"></h1>
-        <p>College of Engineering, Guindy Alumni Association of North America</p>
+        <!-- <p>College of Engineering, Guindy Alumni Association of North America</p> -->
     </header>
 
     <div class="container">
-        <h2 class="section-title">Welcome</h2>
+        <!-- <h2 class="section-title">Welcome</h2> -->
 
         <div class="grid">
             <!-- Contribution Page -->
-            <div class="card">
+            <div class="card card-tint-1">
                 <h4>Support the Alma Mater</h4>
                 <p>Help us build a stronger CEG community through scholarships, betterment funds, and mentorship
                     programs.</p>
@@ -28,20 +28,28 @@
             </div>
 
             <!-- CEG Betterment Page -->
-            <div class="card">
+            <div class="card card-tint-2">
                 <h4>CEG Betterment</h4>
                 <p>CEG Betterment focuses on enhancing the academic and living experience at CEG through strategic
                     improvements to infrastructure, facilities, and support systems for students and faculty.</p>
                 <a href="./ceg-betterment.html" class="btn">CEG Betterment</a>
             </div>
 
+            <!-- Events (Dynamic) -->
+            <div class="card card-tint-3" id="events-card" style="display: none;">
+                <h4>Upcoming Events</h4>
+                <div id="events-list" style="margin-bottom: 15px; font-size: 0.9em;">
+                    <!-- Events will be injected here -->
+                </div>
+                <a href="./events/index.html" class="btn">All Events</a>
+            </div>
+
             <!-- Connect with Others -->
-            <div class="card">
+            <div class="card card-tint-4">
                 <h4>Connect with Others</h4>
                 <p>Join the official CEGAANA network to connect with alumni, explore career opportunities, and stay
                     updated.</p>
-                <a href="https://cegaana.org" class="btn" target="_blank" rel="noopener noreferrer">Visit
-                    CEGAANA.org</a>
+                <a href="./join/index.html" class="btn">Join CEGAANA</a>
             </div>
         </div>
     </div>
@@ -50,6 +58,30 @@
         <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA).
             All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('./events/events_list.json')
+                .then(response => response.json())
+                .then(events => {
+                    if (events && events.length > 0) {
+                        const eventsCard = document.getElementById('events-card');
+                        const eventsList = document.getElementById('events-list');
+
+                        events.slice(0, 2).forEach(event => {
+                            const date = new Date(event.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                            const eventDiv = document.createElement('div');
+                            eventDiv.style.marginBottom = '10px';
+                            eventDiv.innerHTML = `<strong><a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a></strong><br><span style="color: #666;">${date} &bull; ${event.location}</span>`;
+                            eventsList.appendChild(eventDiv);
+                        });
+
+                        eventsCard.style.display = 'block';
+                    }
+                })
+                .catch(error => console.error('Error fetching events:', error));
+        });
+    </script>
 </body>
 
 </html>
