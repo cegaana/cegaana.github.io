@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEGAANA | Redirecting...</title>
+    <!-- Use root-relative paths since 404 can trigger at any URL depth -->
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .redirect-container {
+            text-align: center;
+            padding: 4rem 2rem;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border-left-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #not-found-content {
+            display: none;
+        }
+
+        #redirect-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/index.html"><img src="/cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo"></a></h1>
+    </header>
+
+    <div class="container redirect-container">
+        <!-- Content shown while redirecting -->
+        <div id="redirect-content">
+            <div class="spinner" style="margin: 0 auto 20px;"></div>
+            <h2 style="color: var(--secondary-color);">Redirecting...</h2>
+            <p style="color: #666; font-size: 1.1rem;">Taking you to the right page on the member portal.</p>
+        </div>
+
+        <!-- Content shown if not matched -->
+        <div id="not-found-content">
+            <h2 style="color: var(--primary-color); font-size: 4rem; margin-bottom: 0;">404</h2>
+            <h3 style="color: var(--secondary-color); margin-top: 10px; font-size: 2rem;">Page Not Found</h3>
+            <p style="color: #666; max-width: 500px; margin: 0 auto 30px; font-size: 1.1rem;">
+                We are sorry. The page you are looking for might have been moved, had its name changed, or is
+                temporarily unavailable.
+            </p>
+            <a href="/index.html" class="btn" style="font-size: 1.1rem; padding: 12px 30px;">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA). All Rights
+            Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configuration: Add paths here that should redirect to members.cegaana.org
+            // It uses a simple startsWith() logic.
+            const redirectPrefixes = [
+                '/donation',
+                '/campusfeed',
+                '/feed',
+                '/galleries',
+                '/page/team-608',
+                '/f/Official-Documents-5393'
+            ];
+
+            const currentPath = window.location.pathname;
+            let shouldRedirect = false;
+
+            for (let i = 0; i < redirectPrefixes.length; i++) {
+                if (currentPath.startsWith(redirectPrefixes[i])) {
+                    shouldRedirect = true;
+                    break;
+                }
+            }
+
+            if (shouldRedirect) {
+                // Show the friendly redirect spinner
+                document.getElementById('redirect-content').style.display = 'block';
+
+                // Preserve query parameters and hash
+                const newUrl = 'https://members.cegaana.org' + currentPath + window.location.search + window.location.hash;
+
+                // Redirect immediately, but the UI provides a smooth visual cue if connection takes a moment
+                setTimeout(() => {
+                    window.location.replace(newUrl);
+                }, 500); // 500ms delay to briefly show the friendly transition
+            } else {
+                // Show standard 404
+                document.title = "CEGAANA | 404 Not Found";
+                document.getElementById('not-found-content').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

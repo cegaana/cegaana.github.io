@@ -77,8 +77,25 @@
                         });
 
                         const card = document.createElement('div');
+                        const isCompleted = new Date(event.date) < new Date();
 
-                        if (currentView === 'cards') {
+                        if (isCompleted) {
+                            let panelistsText = '';
+                            if (event.panelists && event.panelists.length > 0) {
+                                const names = event.panelists.map(p => p.name).join(', ');
+                                panelistsText = `<p style="margin: 5px 0; font-size: 0.9em; color: #666;">🎙 <strong>Panelists:</strong> ${names}</p>`;
+                            }
+
+                            card.className = 'card';
+                            card.style.opacity = '0.7';
+                            card.innerHTML = `
+                                <h4 style="margin-bottom: 10px; color: #555;">${event.title} <span style="font-size: 0.8em; font-weight: normal;">(Completed)</span></h4>
+                                <p style="margin: 5px 0; font-size: 0.9em; color: #666;">📅 <strong>Date:</strong> ${dateStr}</p>
+                                ${panelistsText}
+                            `;
+                            card.style.display = 'flex';
+                            card.style.flexDirection = 'column';
+                        } else if (currentView === 'cards') {
                             let panelistsHTML = '';
                             if (event.panelists && event.panelists.length > 0) {
                                 const links = event.panelists.map(p => `<a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a>`).join(', ');
