@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support CEGAANA | Contribute</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .category-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .nav-pill {
+            background-color: #ffffff;
+            border: 2px solid #d32f2f;
+            color: #d32f2f;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav-pill:hover {
+            background-color: #d32f2f;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(211, 47, 47, 0.2);
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 12px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-section.alt-bg {
+            background-color: #f0f4f8;
+            /* Darker blue-grey tint for contrast */
+            border: 1px solid #e2e8f0;
+            box-shadow: none;
+        }
+
+        .project-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h4 {
+            margin-top: 0;
+            color: #d32f2f;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .project-card a.btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background: #d32f2f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .project-card a.btn:hover {
+            background: #b71c1c;
+        }
+
+        .loader {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        .batch-highlight {
+            background-color: #fcf9ee;
+            border-left: 4px solid #ffd54f;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/styles-B5Bx2Jh2.css">
+</head>
+
+<body>
+    <header>
+        <h1><img src="/cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo">Support the Alma Mater</h1>
+        <p>Your contributions empower the next generation of engineers. <br />
+            Help us build a stronger CEG community!
+        </p>
+    </header>
+
+    <div class="container">
+
+        <h2 class="section-title">What We Support</h2>
+        <div class="category-nav" id="category-nav-container"></div>
+
+        <!-- Pre-defined Scholarship Section -->
+        <div class="category-section" id="category-Scholarships">
+            <h3>The CEGAANA Scholarship Fund</h3>
+            <p>We provide tax-deductible donations with end-to-end transparency to show exactly where and how your
+                contributions are spent. We work alongside the Knowledge Foundation in Chennai to thoroughly vet and
+                identify deserving students.</p>
+            <div class="stats-grid" style="margin-top: 20px;">
+                <div class="stat-box"><strong>$2,100</strong><span>Funds a Day Scholar (4 Years)</span></div>
+                <div class="stat-box"><strong>$6,800</strong><span>Funds a Hostel Student (4 Years)</span></div>
+                <div class="stat-box"><strong>100%</strong><span>Direct Funding to Students*</span></div>
+            </div>
+            <h4 style="margin-top: 30px;">Student Selection Criteria</h4>
+            <ul class="custom-list">
+                <li>First-generation college attendees</li>
+                <li>Hailing from low-income families</li>
+                <li>Demonstrated interest, commitment, and excellent high school academic records</li>
+            </ul>
+
+            <!-- General Scholarships container -->
+            <div class="project-container"></div>
+
+            <div class="batch-highlight">
+                <strong>Batch-Based Funds:</strong> Want to make an impact with your peers? Alumni can combine donations
+                within their batch.
+            </div>
+
+            <!-- Batch Scholarships container -->
+            <div class="batch-container"></div>
+        </div>
+
+        <!-- Dynamic Sections for other categories will be injected here -->
+        <div id="dynamic-categories">
+            <div class="loader" id="loading-spinner">Loading donation projects...</div>
+        </div>
+
+        <hr style="margin: 50px 0; border: none; border-top: 1px solid #ddd;">
+
+        <h2 class="section-title">How to Contribute</h2>
+        <div class="grid">
+            <!-- Methods -->
+            <div class="card">
+                <h4>Donor-Advised Funds (DAF) <span class="badge">New</span></h4>
+                <p>Maximize your philanthropic impact by routing grants from your Donor-Advised Fund. We accept
+                    contributions through platforms like <strong>Vanguard Charitable Trust</strong> and <strong>Fidelity
+                        Charitable Trust</strong>.</p>
+                <p>When submitting your grant recommendation, please use our tax ID: <br><strong>EIN:
+                        46-5178306</strong></p>
+            </div>
+            <div class="card">
+                <h4>Employer Matching</h4>
+                <p>Double your impact! If your company uses Benevity or another corporate matching portal, search for
+                    <strong>"CEGAANA"</strong> or <strong>"CEGAANA Scholarship Fund"</strong>.
+                </p>
+                <a href="../benevity-help.html" class="btn">Learn About Benevity Matching</a>
+            </div>
+            <div class="card">
+                <h4>PayPal & Digital Transfers</h4>
+                <p>If your company does not offer a matching program, you can send donations directly via PayPal.</p>
+                <p>Please send transfers to:<br> <strong>finance@cegaana.org</strong></p>
+                <p><em>Note: Transaction fees may apply. Once donated, please request a tax receipt form.</em></p>
+            </div>
+            <div class="card">
+                <h4>By Check</h4>
+                <p>Ideal for larger amounts without corporate matching. Make checks payable to
+                    <strong>"CEGAANA"</strong> and include a memo (e.g., "Scholarship Fund" or "CEGAANA Betterment").
+                </p>
+                <p><strong>Mail to our updated address:</strong><br>CEGAANA<br>142 N. Milpitas Blvd #392<br>Milpitas, CA
+                    95035</p>
+            </div>
+            <!-- Other Ways To Get Involved Merged -->
+            <div class="card">
+                <h4>Ask-A-CEGian Mentorship</h4>
+                <p>Give back with your time and expertise. Join our mentorship program to guide current students through
+                    their academic and professional journeys.</p>
+            </div>
+            <div class="card">
+                <h4>Corporate Advocacy</h4>
+                <p>Help sign up CEGAANA as a recognized charitable organization within your company's HR portal to
+                    unlock matching contributions for fellow alumni.</p>
+            </div>
+        </div>
+
+        <div class="tax-info" style="margin-top: 50px;">
+            <h3>501(c)(3) Tax-Exempt Status</h3>
+            <p>The College of Engineering, Guindy Alumni Association of North America (CEGAANA) is a registered
+                501(c)(3) non-profit organization. All contributions are tax-deductible to the extent permitted by U.S.
+                law.</p>
+            <p style="margin-top: 10px; font-size: 1.2rem;"><strong>Organization EIN: 46-5178306</strong></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA). All Rights
+            Reserved.</p>
+        <p>142 N. Milpitas Blvd #392, Milpitas, CA 95035</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const spinner = document.getElementById('loading-spinner');
+            const dynamicContainer = document.getElementById('dynamic-categories');
+
+            // Brief summaries for generated categories
+            const categorySummaries = {
+                "CEG Betterment": "Help us modernize CEG facilities and ensure students have access to state-of-the-art equipment.",
+                "Campus Infrastructure & Equipment": "Help us modernize CEG facilities and ensure students have access to state-of-the-art equipment.",
+                "Academics & Labs": "Support the academic excellence of CEG by funding advanced laboratories and research opportunities.",
+                "Student Clubs & Activities": "Foster extracurricular growth and real-world engineering experience through student-led initiatives.",
+                "General Funds & Organizational": "Support the core operations, emergency needs, and general outreach of the CEGAANA organization."
+            };
+
+            try {
+                const response = await fetch('donations.json');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const data = await response.json();
+                const projects = data.projects || [];
+
+                // Group projects by category
+                const groups = {};
+                projects.forEach(p => {
+                    const cat = p.category || 'Other Funds';
+                    if (!groups[cat]) groups[cat] = [];
+                    groups[cat].push(p);
+                });
+
+                spinner.style.display = 'none';
+
+                const navContainer = document.getElementById('category-nav-container');
+
+                function renderCategorySection(cat, items, index) {
+                    const sectionId = 'category-' + cat.replace(/[\s&]+/g, '-');
+
+                    // 1. Create Nav Pill
+                    const pill = document.createElement('a');
+                    pill.href = '#' + sectionId;
+                    pill.className = 'nav-pill';
+                    pill.textContent = cat;
+                    navContainer.appendChild(pill);
+
+                    // 2. Find or Create Section Container
+                    let section = document.getElementById(sectionId);
+                    if (!section) {
+                        section = document.createElement('div');
+                        section.id = sectionId;
+                        section.className = 'category-section';
+                        if (index % 2 === 1) section.classList.add('alt-bg');
+
+                        const title = document.createElement('h3');
+                        title.textContent = cat;
+                        section.appendChild(title);
+
+                        if (categorySummaries[cat]) {
+                            const desc = document.createElement('p');
+                            desc.textContent = categorySummaries[cat];
+                            section.appendChild(desc);
+                        }
+                        dynamicContainer.appendChild(section);
+                    }
+
+                    // 3. Find or Create Highlight Box
+                    let highlightBox = section.querySelector('.batch-highlight');
+                    if (!highlightBox) {
+                        highlightBox = document.createElement('div');
+                        highlightBox.className = 'batch-highlight';
+                        section.appendChild(highlightBox);
+                    }
+
+                    // 4. Populate Funds
+                    const sortedItems = [...items].sort((a, b) => {
+                        const idA = parseInt(a.id, 10) || 0;
+                        const idB = parseInt(b.id, 10) || 0;
+                        return idB - idA;
+                    });
+                    const namesList = sortedItems.map(p => p.name).join(', ');
+                    const namesP = document.createElement('p');
+                    namesP.style.marginTop = '15px';
+                    namesP.innerHTML = `<strong>${cat === 'Scholarships' ? 'Current Active Batch Funds:' : 'Active Funds:'}</strong> ${namesList}`;
+                    highlightBox.appendChild(namesP);
+
+                    const btnContainer = document.createElement('div');
+                    btnContainer.style.marginTop = '15px';
+                    const donateBtn = document.createElement('a');
+                    donateBtn.href = 'https://members.cegaana.org/donation';
+                    donateBtn.className = 'btn';
+                    donateBtn.style.display = 'inline-block';
+                    donateBtn.style.padding = '8px 15px';
+                    donateBtn.style.background = '#d32f2f';
+                    donateBtn.style.color = 'white';
+                    donateBtn.style.textDecoration = 'none';
+                    donateBtn.style.borderRadius = '4px';
+                    donateBtn.style.fontWeight = 'bold';
+                    donateBtn.textContent = cat === 'Scholarships' ? 'Donate to a Batch Fund' : `Donate to ${cat}`;
+                    btnContainer.appendChild(donateBtn);
+                    highlightBox.appendChild(btnContainer);
+                }
+
+                // Process "Scholarships" first into the existing DOM element
+                if (groups['Scholarships']) {
+                    const batchFunds = groups['Scholarships'].filter(p => p.year);
+                    batchFunds.sort((a, b) => {
+                        const aVal = typeof a.year === 'number' ? a.year : 0;
+                        const bVal = typeof b.year === 'number' ? b.year : 0;
+                        return aVal - bVal;
+                    });
+
+                    const generalSchol = groups['Scholarships'].filter(p => !p.year);
+                    const scholContainer = document.querySelector('#category-Scholarships .project-container');
+                    if (scholContainer) scholContainer.innerHTML = buildProjectGrid(generalSchol);
+
+                    renderCategorySection('Scholarships', batchFunds, 0);
+
+                    const batchContainer = document.querySelector('#category-Scholarships .batch-container');
+                    if (batchContainer) batchContainer.remove();
+
+                    delete groups['Scholarships'];
+                }
+
+                let sectionIndex = 1;
+
+                // Process remaining categories dynamically in specific order
+                const desiredOrder = [
+                    "CEG Betterment",
+                    "Academics & Labs",
+                    "General Funds & Organizational"
+                ];
+
+                desiredOrder.forEach(cat => {
+                    const items = groups[cat];
+                    if (!items || items.length === 0) return;
+                    renderCategorySection(cat, items, sectionIndex++);
+                    delete groups[cat];
+                });
+
+                // Catch any remaining unexpected categories
+                for (const [cat, items] of Object.entries(groups)) {
+                    renderCategorySection(cat, items, sectionIndex++);
+                }
+
+            } catch (err) {
+                spinner.textContent = 'Error loading donations data. Please try again later.';
+                console.error('Fetch error:', err);
+            }
+        });
+
+        function buildProjectGrid(projects) {
+            let html = '<ul class="project-list">';
+            projects.forEach(p => {
+                // Link directly to main donation page as specific fund deep-links are inactive
+                const link = 'https://members.cegaana.org/donation';
+                html += `
+                    <li class="project-card">
+                        <h4>${p.name}</h4>
+                        <a href="${link}" class="btn" target="_blank" rel="noopener noreferrer">Donate Now</a>
+                    </li>
+                `;
+            });
+            html += '</ul>';
+            return html;
+        }
+    </script>
+</body>
+
+</html>

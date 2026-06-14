@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "source": "tools/cegaana-donation-data/donation_page.html",
+    "extraction_date": null,
+    "organization": {
+      "name": "CEGAANA",
+      "full_name": "College of Engineering, Guindy Alumni Association of North America",
+      "ein": "46-5178306",
+      "type": "501(c)(3) Non-profit",
+      "location": "North America, USA",
+      "url": "https://members.cegaana.org/donation"
+    },
+    "currency": "USD",
+    "currency_note": "Confirmed from embedded config: USD"
+  },
+  "extraction_scope": {
+    "static_fields": [
+      "id",
+      "name",
+      "url"
+    ],
+    "dynamic_fields": {
+      "description": "Loaded dynamically via JavaScript/API (not in webarchive)",
+      "target": "Loaded via API (not in webarchive)",
+      "category": "Loaded via API (not in webarchive)",
+      "collected": "Changes dynamically with donations (not in webarchive)",
+      "status": "Changes dynamically (not in webarchive)",
+      "image": "Loaded via API (not in webarchive)",
+      "beneficiary": "Loaded via API (not in webarchive)",
+      "created_date": "Not in webarchive",
+      "end_date": "Not in webarchive",
+      "donors_count": "Changes dynamically (not in webarchive)",
+      "impact": "Loaded via API (not in webarchive)"
+    },
+    "notes": "Webarchive is a static HTML snapshot. Dynamic fields require calling the live API or visiting https://members.cegaana.org/donation in a browser."
+  },
+  "projects": [
+    {
+      "id": 55,
+      "name": "1990 Knowledge Fund",
+      "url": "/donation/55",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": 1990
+    },
+    {
+      "id": 79,
+      "name": "1993 Batch Scholarship fund",
+      "url": "/donation/79",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": 1993
+    },
+    {
+      "id": 80,
+      "name": "General CEGAANA Scholarship Fund",
+      "url": "/donation/80",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": "General"
+    },
+    {
+      "id": 108,
+      "name": "CEGAANA Organization Donation",
+      "url": "/donation/108",
+      "source": "html_link",
+      "category": "General Funds"
+    },
+    {
+      "id": 142,
+      "name": "CEGAANA Emergency Fund",
+      "url": "/donation/142",
+      "source": "html_link",
+      "category": "General Funds"
+    },
+    {
+      "id": 188,
+      "name": "CEG Betterment Fund",
+      "url": "/donation/188",
+      "source": "html_link",
+      "category": "CEG Betterment"
+    },
+    {
+      "id": 288,
+      "name": "1996 Scholarship Fund",
+      "url": "/donation/288",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": 1996
+    },
+    {
+      "id": 321,
+      "name": "CEG Motorsport - 2023 under CEG Betterment Club support",
+      "url": "/donation/321",
+      "source": "html_link",
+      "category": "CEG Betterment"
+    },
+    {
+      "id": 409,
+      "name": "2014 Batch Scholarship Fund",
+      "url": "/donation/409",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": 2014
+    },
+    {
+      "id": 601,
+      "name": "Upgradation of the Package Design Laboratory, CEG Betterment",
+      "url": "/donation/601",
+      "source": "html_link",
+      "category": "CEG Betterment"
+    },
+    {
+      "id": 602,
+      "name": "Purchase of UPS for IT Department Laboratories",
+      "url": "/donation/602",
+      "source": "html_link",
+      "category": "CEG Betterment"
+    },
+    {
+      "id": 890,
+      "name": "CEG Vaidharma AI Lab Fund",
+      "url": "/donation/890",
+      "source": "html_link",
+      "category": "Academics & Labs"
+    },
+    {
+      "id": 892,
+      "name": "1984 Batch Scholarship Fund",
+      "url": "/donation/892",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": 1984
+    },
+    {
+      "id": 933,
+      "name": "1992 Batch Scholarship Fund",
+      "url": "/donation/933",
+      "source": "html_link",
+      "category": "Scholarships",
+      "year": 1992
+    },
+    {
+      "id": 961,
+      "name": "Installation of Outdoor LED Video Walls in CEG Campus - Phase 1",
+      "url": "/donation/961",
+      "source": "html_link",
+      "category": "CEG Betterment"
+    }
+  ],
+  "statistics": {
+    "total_projects": 15,
+    "projects_with_static_data": 15,
+    "projects_with_description": 0,
+    "projects_with_target": 0,
+    "projects_with_category": 0
+  }
+}

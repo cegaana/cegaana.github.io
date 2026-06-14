@@ -32,7 +32,7 @@
                 <h4>Support the Alma Mater</h4>
                 <p>Help us build a stronger CEG community through scholarships, betterment funds, and mentorship
                     programs.</p>
-                <a href="./cegaana_contribute.html" class="btn">Ways to Contribute</a>
+                <a href="./contribute" class="btn">Ways to Contribute</a>
             </div>
 
             <!-- CEG Betterment Page -->
@@ -64,19 +64,30 @@
             fetch('./events/events_list.json')
                 .then(response => response.json())
                 .then(events => {
-                    if (events && events.length > 0) {
-                        const eventsCard = document.getElementById('events-card');
-                        const eventsList = document.getElementById('events-list');
+                    const eventsCard = document.getElementById('events-card');
+                    const eventsList = document.getElementById('events-list');
+                    
+                    eventsCard.style.display = 'block';
 
-                        events.slice(0, 2).forEach(event => {
-                            const date = new Date(event.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-                            const eventDiv = document.createElement('div');
-                            eventDiv.style.marginBottom = '10px';
-                            eventDiv.innerHTML = `<strong><a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a></strong><br><span style="color: #666;">${date} &bull; ${event.location}</span>`;
-                            eventsList.appendChild(eventDiv);
-                        });
+                    if (events && Array.isArray(events)) {
+                        const now = new Date();
+                        now.setHours(0, 0, 0, 0);
 
-                        eventsCard.style.display = 'block';
+                        const upcomingEvents = events.filter(e => new Date(e.date) >= now);
+
+                        if (upcomingEvents.length > 0) {
+                            upcomingEvents.slice(0, 2).forEach(event => {
+                                const date = new Date(event.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                                const eventDiv = document.createElement('div');
+                                eventDiv.style.marginBottom = '10px';
+                                eventDiv.innerHTML = `<strong><a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a></strong><br><span style="color: #666;">${date} &bull; ${event.location}</span>`;
+                                eventsList.appendChild(eventDiv);
+                            });
+                        } else {
+                            eventsList.innerHTML = '<p style="color: #666; font-style: italic; margin-bottom: 10px;">More events coming soon...</p>';
+                        }
+                    } else {
+                        eventsList.innerHTML = '<p style="color: #666; font-style: italic; margin-bottom: 10px;">More events coming soon...</p>';
                     }
                 })
                 .catch(error => console.error('Error fetching events:', error));
