@@ -1,7 +1,18 @@
 [
   {
+    "id": 5,
+    "title": "CEG Echo: Lake 22 Hike (near Seattle)",
+    "category": "outdoor",
+    "date": "2026-06-20T14:00:00-07:00",
+    "timeLabel": "2:00 PM - 6:00 PM PST",
+    "location": "Lake 22 Trailhead",
+    "description": "Family-friendly hike for CEG alumni! Reconnect and share stories. Bring hiking boots, extra shoes, plenty of water, and snacks. - Murali (1992 CSE)",
+    "url": "https://forms.gle/7vraZ5GXuaeD3kfi9"
+  },
+  {
     "id": 4,
     "title": "Panel Discussion: How to Crack ML & AI Roles",
+    "category": "panel",
     "date": "2026-05-29T18:00:00-07:00",
     "timeLabel": "6:00 PM PST",
     "location": "Google Meet",

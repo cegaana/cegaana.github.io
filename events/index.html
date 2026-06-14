@@ -7,7 +7,14 @@
     <title>CEGAANA | Events</title>
     <meta name="description"
         content="Upcoming events for College of Engineering, Guindy Alumni Association of North America.">
-  <link rel="stylesheet" crossorigin href="/assets/styles-B5Bx2Jh2.css">
+    <!-- Open Graph Tags for sharing -->
+    <meta property="og:title" content="CEGAANA Events" id="og-title">
+    <meta property="og:description" content="Join upcoming panels, webinars, and hikes with CEG alumni." id="og-desc">
+    <meta property="og:image" content="https://cegaana.github.io/cegaana_logo.jpg" id="og-image">
+    <meta property="og:url" content="https://cegaana.github.io/events/" id="og-url">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" crossorigin href="/assets/styles-B4fQrhEg.css">
 </head>
 
 <body>
@@ -77,7 +84,21 @@
                         });
 
                         const card = document.createElement('div');
+                        card.id = `event-${event.id}`;
                         const isCompleted = new Date(event.date) < new Date();
+                        const themeClass = event.category ? `theme-${event.category}` : 'theme-default';
+                        
+                        const shareIconHTML = `
+                            <button onclick="copyEventLink(event, '${event.id}', '${event.title.replace(/'/g, "\\'")}')" title="Copy Link to Share" style="position: absolute; top: 15px; right: 15px; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.5; transition: opacity 0.2s; z-index: 2;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </button>
+                        `;
 
                         if (isCompleted) {
                             let panelistsText = '';
@@ -86,9 +107,11 @@
                                 panelistsText = `<p style="margin: 5px 0; font-size: 0.9em; color: #666;">🎙 <strong>Panelists:</strong> ${names}</p>`;
                             }
 
-                            card.className = 'card';
+                            card.className = `card ${themeClass}`;
                             card.style.opacity = '0.7';
+                            card.style.position = 'relative';
                             card.innerHTML = `
+                                ${shareIconHTML}
                                 <h4 style="margin-bottom: 10px; color: #555;">${event.title} <span style="font-size: 0.8em; font-weight: normal;">(Completed)</span></h4>
                                 <p style="margin: 5px 0; font-size: 0.9em; color: #666;">📅 <strong>Date:</strong> ${dateStr}</p>
                                 ${panelistsText}
@@ -103,9 +126,12 @@
                             }
 
                             const cardTint = (index % 4) + 1;
-                            card.className = `card card-tint-${cardTint}`;
+                            card.className = `card card-tint-${cardTint} ${themeClass}`;
+                            card.style.backgroundColor = 'var(--theme-simple-bg, #ffffff)';
+                            card.style.position = 'relative';
                             card.innerHTML = `
-                                <h4 style="margin-bottom: 10px;">${event.title}</h4>
+                                ${shareIconHTML}
+                                <h4 style="margin-bottom: 10px; padding-right: 25px;">${event.title}</h4>
                                 <div style="font-size: 0.95em; color: #444; margin-bottom: 15px;">
                                     <p style="margin: 5px 0;">📅 <strong>Date:</strong> ${dateStr}</p>
                                     <p style="margin: 5px 0;">⏰ <strong>Time:</strong> ${timeStr}</p>
@@ -113,7 +139,7 @@
                                     ${panelistsHTML}
                                 </div>
                                 <p style="margin-bottom: 20px;">${event.description}</p>
-                                <a href="${event.url}" class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: auto;">🔗 Join Event</a>
+                                <a href="${event.url}" class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: auto; background-color: var(--theme-simple-btn, var(--primary-color));">🔗 Join Event</a>
                             `;
                             card.style.display = 'flex';
                             card.style.flexDirection = 'column';
@@ -136,8 +162,9 @@
                                 }
                             }
 
-                            card.className = `card-rich`;
+                            card.className = `card-rich ${themeClass}`;
                             card.innerHTML = `
+                                ${shareIconHTML}
                                 <div class="card-rich-grid"></div>
                                 <div class="card-rich-header">
                                     <img src="../cegaana-square-logo.jpg" class="card-rich-logo" alt="CEGAANA">
@@ -156,6 +183,22 @@
                         
                         eventsGrid.appendChild(card);
                     });
+
+                    // Scroll to hash if present on load
+                    if (window.location.hash) {
+                        setTimeout(() => {
+                            const el = document.getElementById(window.location.hash.substring(1));
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Update OG tags dynamically if single event link
+                            const eventId = window.location.hash.substring(1).replace('event-', '');
+                            const evt = allEvents.find(e => e.id == eventId);
+                            if (evt) {
+                                document.getElementById('og-title').content = evt.title;
+                                document.getElementById('og-desc').content = evt.description;
+                            }
+                        }, 500);
+                    }
                 } else {
                     eventsGrid.innerHTML = '<p>No upcoming events at this time.</p>';
                 }
@@ -172,6 +215,60 @@
                     document.getElementById('all-events-list').innerHTML = '<p>Error loading events. Please try again later.</p>';
                 });
         });
+
+        // Global copy function
+        function copyEventLink(e, id, title) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const url = new URL(window.location.href);
+            url.hash = `event-${id}`;
+            const shareUrl = url.toString();
+            const btn = e.currentTarget;
+            const originalHTML = btn.innerHTML;
+
+            const showSuccess = () => {
+                btn.innerHTML = '<span style="font-size:12px; font-weight:bold;">Copied!</span>';
+                setTimeout(() => btn.innerHTML = originalHTML, 2000);
+            };
+            
+            // Prefer native OS share if supported (works on macOS Safari, iOS, Android, etc.)
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    url: shareUrl
+                }).catch(console.error);
+            } else if (navigator.clipboard && window.isSecureContext) {
+                // Modern clipboard API (works in modern Safari over HTTPS/localhost)
+                navigator.clipboard.writeText(shareUrl).then(showSuccess).catch(err => {
+                    console.error('Clipboard copy failed, using fallback', err);
+                    fallbackCopy(shareUrl, showSuccess);
+                });
+            } else {
+                // Legacy fallback for older Safari or non-secure contexts
+                fallbackCopy(shareUrl, showSuccess);
+            }
+        }
+
+        function fallbackCopy(text, onSuccess) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            // Prevent scrolling
+            textArea.style.position = "fixed";
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                if (onSuccess) onSuccess();
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(textArea);
+        }
     </script>
 </body>
 
