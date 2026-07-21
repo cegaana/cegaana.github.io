@@ -79,8 +79,10 @@
                             upcomingEvents.slice(0, 2).forEach(event => {
                                 const date = new Date(event.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
                                 const eventDiv = document.createElement('div');
-                                eventDiv.style.marginBottom = '10px';
-                                eventDiv.innerHTML = `<strong><a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a></strong><br><span style="color: #666;">${date} &bull; ${event.location}</span>`;
+                                const eventTitleHTML = event.url
+                                    ? `<a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a>`
+                                    : event.title;
+                                eventDiv.innerHTML = `<strong>${eventTitleHTML}</strong><br><span style="color: #666;">${date} &bull; ${event.location}</span>`;
                                 eventsList.appendChild(eventDiv);
                             });
                         } else {

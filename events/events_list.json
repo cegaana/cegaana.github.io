@@ -1,5 +1,14 @@
 [
   {
+    "id": 6,
+    "title": "CEG Annual 2026 Meet",
+    "category": "meet",
+    "date": "2026-09-26T12:30:00-07:00",
+    "timeLabel": "12:30 PM - 6:00 PM PST",
+    "location": "Computer History Museum, San Jose, CA",
+    "description": "First-ever North America Conference of CEG alumni from across North America. Come reconnect with classmates, meet fellow alumni from across the tech industry, hear from inspiring speakers, and build new connections."
+  },
+  {
     "id": 5,
     "title": "CEG Echo: Lake 22 Hike (near Seattle)",
     "category": "outdoor",

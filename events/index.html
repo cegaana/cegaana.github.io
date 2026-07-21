@@ -129,6 +129,11 @@
                             card.className = `card card-tint-${cardTint} ${themeClass}`;
                             card.style.backgroundColor = 'var(--theme-simple-bg, #ffffff)';
                             card.style.position = 'relative';
+                            
+                            const joinBtnHTML = event.url
+                                ? `<a href="${event.url}" class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: auto; background-color: var(--theme-simple-btn, var(--primary-color));">🔗 Join Event</a>`
+                                : `<button class="btn" disabled style="margin-top: auto; opacity: 0.65; cursor: not-allowed; border: none; font-family: inherit; font-size: inherit; background-color: var(--theme-simple-btn, var(--primary-color));">Coming Soon</button>`;
+
                             card.innerHTML = `
                                 ${shareIconHTML}
                                 <h4 style="margin-bottom: 10px; padding-right: 25px;">${event.title}</h4>
@@ -139,7 +144,7 @@
                                     ${panelistsHTML}
                                 </div>
                                 <p style="margin-bottom: 20px;">${event.description}</p>
-                                <a href="${event.url}" class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: auto; background-color: var(--theme-simple-btn, var(--primary-color));">🔗 Join Event</a>
+                                ${joinBtnHTML}
                             `;
                             card.style.display = 'flex';
                             card.style.flexDirection = 'column';
@@ -162,6 +167,10 @@
                                 }
                             }
 
+                            const joinBtnHTML = event.url
+                                ? `<a href="${event.url}" class="card-rich-btn" target="_blank" rel="noopener noreferrer">JOIN EVENT</a>`
+                                : `<button class="card-rich-btn" disabled style="opacity: 0.65; cursor: not-allowed; border: none; font-family: inherit;">Coming Soon</button>`;
+
                             card.className = `card-rich ${themeClass}`;
                             card.innerHTML = `
                                 ${shareIconHTML}
@@ -177,7 +186,7 @@
                                 </div>
                                 ${panelistsNamesHTML}
                                 <div class="card-rich-topics">${event.description}</div>
-                                <a href="${event.url}" class="card-rich-btn" target="_blank" rel="noopener noreferrer">JOIN EVENT</a>
+                                ${joinBtnHTML}
                             `;
                         }
                         
