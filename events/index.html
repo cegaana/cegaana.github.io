@@ -225,14 +225,24 @@
                 });
         });
 
+        function getShareUrl(id) {
+            const loc = window.location;
+            let basePath = loc.pathname;
+            if (basePath.endsWith('.html')) {
+                basePath = basePath.substring(0, basePath.lastIndexOf('/'));
+            }
+            if (!basePath.endsWith('/')) {
+                basePath += '/';
+            }
+            return loc.origin + basePath + `event-${id}.html`;
+        }
+
         // Global copy function
         function copyEventLink(e, id, title) {
             e.preventDefault();
             e.stopPropagation();
             
-            const url = new URL(window.location.href);
-            url.hash = `event-${id}`;
-            const shareUrl = url.toString();
+            const shareUrl = getShareUrl(id);
             const btn = e.currentTarget;
             const originalHTML = btn.innerHTML;
 
