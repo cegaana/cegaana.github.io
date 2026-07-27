@@ -238,7 +238,7 @@
         }
 
         // Global copy function
-        function copyEventLink(e, id, title) {
+        window.copyEventLink = function copyEventLink(e, id, title) {
             e.preventDefault();
             e.stopPropagation();
             

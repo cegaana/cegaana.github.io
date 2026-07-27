@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Confirmed | Converge 2026 Leaders Forum</title>
+    <meta name="description" content="Thank you for registering for Converge 2026 Leaders Forum.">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="I am registered for Converge 2026: Leaders Forum!">
+    <meta property="og:description"
+        content="Join CEG alumni executives, founders, and investors on Saturday, Sept 26, 2026 at the Computer History Museum, Mountain View, CA.">
+    <meta property="og:image" content="https://cegaana.org/converge/2026/lf/converge-2026-lf.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://cegaana.org/converge/2026/lf">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I am registered for Converge 2026: Leaders Forum!">
+    <meta name="twitter:description"
+        content="Join CEG alumni executives, founders, and investors on Saturday, Sept 26, 2026 at the Computer History Museum, Mountain View, CA.">
+    <meta name="twitter:image" content="https://cegaana.org/converge/2026/lf/converge-2026-lf.jpg">
+
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Modern Clean Layout with 2 Unified Font Sizes: 1.6rem (Titles) & 0.95rem (Content & Buttons) */
+
+        .lf-header {
+            padding: 0.7rem 1.2rem;
+        }
+
+        .lf-brand-logo img {
+            height: 38px;
+            width: 38px;
+        }
+
+        .lf-brand-logo span {
+            font-size: 1.25rem;
+        }
+
+        .thank-you-container {
+            max-width: 640px;
+            margin: 1rem auto 1.5rem auto;
+            padding: 0 0.8rem;
+            text-align: center;
+        }
+
+        .thank-you-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.4rem 1.1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+            border: 1px solid #E2E8F0;
+        }
+
+        .check-icon {
+            width: 48px;
+            height: 48px;
+            background: #DEF7EC;
+            color: #0E9F6E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin: 0 auto 0.4rem auto;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            color: var(--converge-navy);
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+
+        /* Unified Content & Button Font Size (0.95rem) */
+        .sub-text,
+        .summary-card,
+        .action-card-title,
+        .action-btn,
+        .home-btn,
+        .toast-msg,
+        .lf-footer {
+            font-size: 0.95rem;
+        }
+
+        .sub-text {
+            color: #475569;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        /* Summary Box */
+        .summary-card {
+            background: #F8FAFC;
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+            text-align: left;
+            margin-bottom: 1rem;
+            border: 1px solid #E2E8F0;
+        }
+
+        .summary-row {
+            margin-bottom: 6px;
+            color: #334155;
+            line-height: 1.45;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .map-link {
+            color: #7E22CE;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .map-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Modern Structured Actions Grid with Headers */
+        .actions-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .action-card {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 10px;
+            padding: 0.9rem;
+            text-align: left;
+        }
+
+        .action-card-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--converge-navy);
+            margin-bottom: 0.6rem;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 9px 10px;
+            border-radius: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            border: none;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .btn-google {
+            background-color: var(--converge-navy);
+            color: white;
+        }
+
+        .btn-google:hover {
+            background-color: #0D3756;
+        }
+
+        .btn-ical {
+            background-color: #334155;
+            color: white;
+        }
+
+        .btn-ical:hover {
+            background-color: #1E293B;
+        }
+
+        .btn-wa {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-wa:hover {
+            background-color: #1DA851;
+        }
+
+        .btn-share {
+            background-color: #028090;
+            color: white;
+        }
+
+        .btn-share:hover {
+            background-color: #01626E;
+        }
+
+        .home-btn {
+            display: inline-block;
+            color: var(--converge-navy);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .home-btn:hover {
+            background: #F1F5F9;
+        }
+
+        .toast-msg {
+            display: none;
+            background: #1E293B;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        .lf-footer {
+            padding: 1rem 0.8rem;
+        }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/converge-BnGdTcJI.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-B4fQrhEg.css">
+</head>
+
+<body>
+
+    <header class="lf-header">
+        <div class="lf-nav-container">
+            <a href="../../../index.html" class="lf-brand-logo">
+                <img src="/cegaana_logo.jpg" alt="CEGAANA Logo">
+                <span>CEGAANA</span>
+            </a>
+        </div>
+    </header>
+
+    <div class="thank-you-container">
+        <div class="thank-you-card">
+            <div class="check-icon">✓</div>
+            <h1>Converge 2026: You're Registered!</h1>
+            <p class="sub-text">Thank you for contributing to the <strong>Leaders Forum</strong>. An official Stripe 501(c)(3) tax receipt has been sent to your email.</p>
+
+            <!-- Compact Event Summary -->
+            <div class="summary-card">
+                <div class="summary-row"><strong>Event:</strong> Converge 2026: Leaders Forum</div>
+                <div class="summary-row"><strong>When:</strong> Saturday, Sept 26, 2026 • 9:00 AM - 12:00 PM PST</div>
+                <div class="summary-row">
+                    <strong>Venue:</strong> Computer History Museum, 1401 N Shoreline Blvd, Mountain View, CA 94043 
+                    <a href="https://maps.google.com/?q=Computer+History+Museum+Mountain+View+CA" target="_blank" rel="noopener noreferrer" class="map-link">Google Maps &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Modern Actions Wrapper with Semantic Titles -->
+            <div class="actions-wrapper">
+
+                <!-- Card 1: Calendar Integration -->
+                <div class="action-card">
+                    <div class="action-card-title">
+                        <span>📅</span> Add to Calendar
+                    </div>
+                    <div class="action-grid">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Converge+2026%3A+Leaders+Forum&dates=20260926T160000Z%2F20260927T010000Z&details=CEGAANA+Converge+2026+Leaders+Forum+at+Computer+History+Museum%2C+Mountain+View%2C+CA.&location=Computer+History+Museum%2C+1401+N+Shoreline+Blvd%2C+Mountain+View%2C+CA+94043"
+                            target="_blank" rel="noopener noreferrer" class="action-btn btn-google">
+                            Google Cal
+                        </a>
+                        <button onclick="downloadICS()" class="action-btn btn-ical">
+                            iCal / Outlook
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card 2: Social Sharing -->
+                <div class="action-card">
+                    <div class="action-card-title">
+                        <span>📣</span> Share with Other Leaders
+                    </div>
+                    <div class="action-grid">
+                        <a href="https://api.whatsapp.com/send?text=I%20am%20registered%20for%20Converge%202026%3A%20Leaders%20Forum%20on%20Sept%2026%2C%202026%21%20Please%20join%20me%20at%3A%20https%3A%2F%2Fcegaana.org%2Fconverge%2F2026%2Flf"
+                            target="_blank" rel="noopener noreferrer" class="action-btn btn-wa">
+                            💬 WhatsApp
+                        </a>
+                        <button onclick="shareEvent()" class="action-btn btn-share">
+                            🔗 Share Link
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="toastMsg" class="toast-msg">✓ Share link copied to clipboard!</div>
+        </div>
+
+        <a href="../../../index.html" class="home-btn">&larr; Return to CEGAANA Home</a>
+    </div>
+
+    <footer class="lf-footer">
+        <div>&copy; 2026 CEGAANA (501(c)(3) Non-Profit) | College of Engineering, Guindy Alumni Association</div>
+    </footer>
+
+    <!-- Calendar Download & Share Script -->
+    <script>
+        window.downloadICS = function downloadICS() {
+            const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//CEGAANA//Converge 2026 Leaders Forum//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+SUMMARY:Converge 2026: Leaders Forum
+DTSTART:20260926T160000Z
+DTEND:20260927T010000Z
+LOCATION:Computer History Museum\\, 1401 N Shoreline Blvd\\, Mountain View\\, CA 94043
+DESCRIPTION:CEGAANA Converge 2026 Leaders Forum at Computer History Museum\\, Mountain View\\, CA. 9:00 AM - 12:00 PM PST Leaders Forum followed by lunch and general conference till 6:00 PM.
+URL:https://cegaana.org/converge/2026/lf
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'converge-2026-leaders-forum.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+
+        window.shareEvent = async function shareEvent() {
+            const shareText = "I am registered for Converge 2026: Leaders Forum on Sept 26, 2026! Please join me at: https://cegaana.org/converge/2026/lf";
+            const shareUrl = "https://cegaana.org/converge/2026/lf";
+
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: "Converge 2026: Leaders Forum",
+                        text: shareText,
+                        url: shareUrl
+                    });
+                } catch (err) {
+                    console.log('Share canceled or closed', err);
+                }
+            } else {
+                copyShareText(shareText);
+            }
+        };
+
+        function copyShareText(textToCopy) {
+            const text = textToCopy || "I am registered for Converge 2026: Leaders Forum on Sept 26, 2026! Please join me at: https://cegaana.org/converge/2026/lf";
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            }).catch(() => {
+                prompt('Copy this share text:', text);
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toastMsg');
+            if (toast) {
+                toast.style.display = 'inline-block';
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
