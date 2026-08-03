@@ -1,0 +1,29 @@
+[
+  {
+    "tier_id": "single",
+    "short_title": "CEG Converge 2026: Single Ticket",
+    "num_tickets": "1 Person",
+    "description": "1 Admission ticket for full general conference & networking lunch.",
+    "price": "$100",
+    "image_url": "https://cegaana.org/converge/2026/converge-2026-1.jpg",
+    "stripe_link": "https://buy.stripe.com/aFa14feCE9Um0Npegs7N604"
+  },
+  {
+    "tier_id": "double",
+    "short_title": "CEG Converge 2026: Double Tickets",
+    "num_tickets": "2 Persons",
+    "description": "2 Admission tickets for alumni friends/couples (discounted bundle rate).",
+    "price": "$180",
+    "image_url": "https://cegaana.org/converge/2026/converge-2026-1.jpg",
+    "stripe_link": "https://buy.stripe.com/eVq14f2TWfeG53F8W87N605"
+  },
+  {
+    "tier_id": "student",
+    "short_title": "CEG Converge 2026: Student Pass",
+    "num_tickets": "Subsidized",
+    "description": "1 Subsidized ticket for current students and recent grads (2024–2026).",
+    "price": "$50",
+    "image_url": "https://cegaana.org/converge/2026/converge-2026-1.jpg",
+    "stripe_link": "https://buy.stripe.com/5kQeV51PS3vY53F8W87N606"
+  }
+]

@@ -1,12 +1,13 @@
 [
   {
     "id": 6,
-    "title": "Converge 2026",
+    "title": "CEG Converge 2026",
     "category": "meet",
     "date": "2026-09-26T12:00:00-07:00",
     "timeLabel": "12:00 PM - 6:00 PM PST",
     "location": "Computer History Museum, Mountain View, CA",
     "description": "First-ever North America Conference of CEG alumni! Join us on Sept 26, 2026 at the Computer History Museum in Mountain View, CA to reconnect with classmates, hear inspiring talks, network, and grow together.",
+    "to_be_url": "/converge/2026/",
     "comments": "visit at https://computerhistory.org"
   },
   {
