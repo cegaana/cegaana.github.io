@@ -5,6 +5,7 @@
     "num_tickets": "1 Person",
     "description": "1 Admission ticket for full general conference & networking lunch.",
     "price": "$100",
+    "icon": "🎟️",
     "image_url": "https://cegaana.org/converge/2026/converge-2026-1.jpg",
     "stripe_link": "https://buy.stripe.com/aFa14feCE9Um0Npegs7N604"
   },
@@ -14,6 +15,7 @@
     "num_tickets": "2 Persons",
     "description": "2 Admission tickets for alumni friends/couples (discounted bundle rate).",
     "price": "$180",
+    "icon": "👥",
     "image_url": "https://cegaana.org/converge/2026/converge-2026-1.jpg",
     "stripe_link": "https://buy.stripe.com/eVq14f2TWfeG53F8W87N605"
   },
@@ -23,6 +25,7 @@
     "num_tickets": "Subsidized",
     "description": "1 Subsidized ticket for current students and recent grads (2024–2026).",
     "price": "$50",
+    "icon": "🎓",
     "image_url": "https://cegaana.org/converge/2026/converge-2026-1.jpg",
     "stripe_link": "https://buy.stripe.com/5kQeV51PS3vY53F8W87N606"
   }
