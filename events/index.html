@@ -71,11 +71,19 @@
                 renderEvents();
             });
 
+            function formatEventDate(dateStr, options) {
+                if (typeof dateStr === 'string' && dateStr.includes('T')) {
+                    const [year, month, day] = dateStr.split('T')[0].split('-').map(Number);
+                    return new Date(year, month - 1, day).toLocaleDateString(undefined, options);
+                }
+                return new Date(dateStr).toLocaleDateString(undefined, options);
+            }
+
             function renderEvents() {
                 eventsGrid.innerHTML = '';
                 if (allEvents && allEvents.length > 0) {
                     allEvents.forEach((event, index) => {
-                        const dateStr = new Date(event.date).toLocaleDateString(undefined, { 
+                        const dateStr = formatEventDate(event.date, { 
                             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
                         });
                         

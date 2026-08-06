@@ -60,7 +60,14 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+            function formatEventDate(dateStr, options) {
+                if (typeof dateStr === 'string' && dateStr.includes('T')) {
+                    const [year, month, day] = dateStr.split('T')[0].split('-').map(Number);
+                    return new Date(year, month - 1, day).toLocaleDateString(undefined, options);
+                }
+                return new Date(dateStr).toLocaleDateString(undefined, options);
+            }
+
             fetch('./events/events_list.json')
                 .then(response => response.json())
                 .then(events => {
@@ -77,7 +84,7 @@
 
                         if (upcomingEvents.length > 0) {
                             upcomingEvents.slice(0, 2).forEach(event => {
-                                const date = new Date(event.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                                const date = formatEventDate(event.date, { month: 'short', day: 'numeric', year: 'numeric' });
                                 const eventDiv = document.createElement('div');
                                 const eventTitleHTML = event.url
                                     ? `<a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a>`
