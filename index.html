@@ -69,6 +69,7 @@
     </footer>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
             function formatEventDate(dateStr, options) {
                 if (typeof dateStr === 'string' && dateStr.includes('T')) {
                     const [year, month, day] = dateStr.split('T')[0].split('-').map(Number);
