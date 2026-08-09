@@ -1,0 +1,1 @@
+/* empty css               */import{t as e}from"./event-helpers-BpSuUEgc.js";async function t(){try{let t=await fetch(`./catalog.json`);t.ok?e(`catalogGrid`,await t.json()):console.error(`Failed to load product catalog JSON:`,t.statusText)}catch(e){console.error(`Error fetching product catalog JSON:`,e)}}t();

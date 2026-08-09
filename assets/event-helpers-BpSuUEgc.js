@@ -17,14 +17,13 @@ END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.c
                 <h3 style="font-family: 'Outfit', sans-serif; margin-bottom: 0.5rem; font-size: 1.2rem;">Registration Closed</h3>
                 <p style="font-size: 0.92rem; margin: 0; color: #742A2A;">Online registration for CEG Converge 2026 is currently closed.</p>
             </div>
-        `;return}let i=new Map;r.forEach(e=>{let t=e.group_key||(e.tier_id.includes(`single`)?`single`:e.tier_id.includes(`double`)?`double`:`student`);i.has(t)||i.set(t,{key:t,title:e.group_title||(t===`single`?`Single Ticket`:t===`double`?`Double Tickets`:`Student & Recent Grad Pass`),icon:e.group_icon||(t===`single`?`👤`:t===`double`?`👥`:`🎓`),badge:e.group_badge||e.num_tickets||``,description:e.group_description||e.description||``,items:[]}),i.get(t).items.push(e)});let o=Array.from(i.values()).map(e=>(e.items.sort((e,t)=>e.is_early_bird||e.tier_id.includes(`early_bird`)?-1:1),e)),s=e=>{let t=!!(e.is_early_bird||e.tier_id.includes(`early_bird`)),n=e.option_label||(t?`⚡ Early Bird Special`:`Regular Registration`),r=e.savings_badge||(t?e.tier_id.includes(`double`)?`Save $20`:`Save $15`:``),i=e.expiration_label||(t?`Ends Sep 12`:``);return`
+        `;return}let i=new Map;r.forEach(e=>{let t=e.group_key||(e.tier_id.includes(`single`)?`single`:e.tier_id.includes(`double`)?`double`:`student`);i.has(t)||i.set(t,{key:t,title:e.group_title||(t===`single`?`Single Ticket`:t===`double`?`Double Tickets`:`Student & Recent Grad Pass`),icon:e.group_icon||(t===`single`?`👤`:t===`double`?`👥`:`🎓`),badge:e.group_badge||e.num_tickets||``,description:e.group_description||e.description||``,items:[]}),i.get(t).items.push(e)});let o=Array.from(i.values()).map(e=>(e.items.sort((e,t)=>e.is_early_bird||e.tier_id.includes(`early_bird`)?-1:1),e)),s=e=>{let t=!!(e.is_early_bird||e.tier_id.includes(`early_bird`)),n=e.option_label||(t?`⚡ Early Bird Special`:`Regular Registration`),r=e.savings_badge||(t?e.tier_id.includes(`double`)?`Save $20`:`Save $15`:``);return`
         <div class="option-row ${t?`option-early-bird`:`option-regular`}">
             <div class="option-title-group">
                 <span class="option-label">${n}</span>
-                ${r||i?`
+                ${r?`
                 <div class="option-badges">
-                    ${r?`<span class="option-savings-tag">${r}</span>`:``}
-                    ${i?`<span class="option-expiry-tag">${i}</span>`:``}
+                    <span class="option-savings-tag">${r}</span>
                 </div>
                 `:``}
             </div>
