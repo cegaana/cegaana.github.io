@@ -11,6 +11,45 @@
     "comments": "visit at https://computerhistory.org"
   },
   {
+    "id": 7,
+    "title": "Panel Discussion: Breaking into Project Management",
+    "category": "panel",
+    "date": "2026-08-21T18:00:00-07:00",
+    "timeLabel": "6:00 PM PST",
+    "location": "Zoom Meeting",
+    "description": "Join us for a live career session with two professionals sharing experiences, insights, and practical advice on navigating the path into Project Management as a graduate student.",
+    "url_meet": "https://us02web.zoom.us/j/84418789865?pwd=mjjlqawzb7BASy2MsHdUEhSvZNOFqN.1",
+    "zoom_meeting_id": "844 1878 9865",
+    "zoom_passcode": "914969",
+    "panelists": [
+      {
+        "name": "Karthi Chinnaswamy",
+        "url": "https://www.linkedin.com/in/karthichinnaswamy/"
+      },
+      {
+        "name": "Mirunaulini Pathmanaban",
+        "url": "https://www.linkedin.com/in/mirunaulini-pathmanaban/"
+      }
+    ],
+    "additional_metadata": {
+      "full_description": "Breaking into Project Management as a graduate student can feel confusing especially when most PM roles ask for experience.\n\nSo, what actually works?\n\nJoin us for a live career session with two professionals who can share their experiences, insights, and practical advice on navigating the path into Project Management.\n\nIf you’re a graduate student aspiring to break into Project Management, this is a session you don’t want to miss.\n\nCome with your questions. Leave with a clearer roadmap.",
+      "target_audience": "Graduate students & aspiring Project Managers",
+      "zoom_join_url": "https://us02web.zoom.us/j/84418789865?pwd=mjjlqawzb7BASy2MsHdUEhSvZNOFqN.1",
+      "zoom_meeting_id": "844 1878 9865",
+      "zoom_passcode": "914969",
+      "speakers": [
+        {
+          "name": "Karthi Chinnaswamy",
+          "linkedin": "https://www.linkedin.com/in/karthichinnaswamy/"
+        },
+        {
+          "name": "Mirunaulini Pathmanaban",
+          "linkedin": "https://www.linkedin.com/in/mirunaulini-pathmanaban/"
+        }
+      ]
+    }
+  },
+  {
     "id": 5,
     "title": "CEG Echo: Lake 22 Hike (near Seattle)",
     "category": "outdoor",
