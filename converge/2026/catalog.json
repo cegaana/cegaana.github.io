@@ -18,7 +18,7 @@
     "price": "$75",
     "icon": "🎟️",
     "image_url": "./converge-2026-flyer.jpg",
-    "stripe_link": "https://buy.stripe.com/tbd_early_bird_single"
+    "stripe_link": "https://buy.stripe.com/8x214f668c2ubs31tG7N607"
   },
   {
     "tier_id": "single",
@@ -36,7 +36,7 @@
     "price": "$90",
     "icon": "🎟️",
     "image_url": "./converge-2026-flyer.jpg",
-    "stripe_link": "https://buy.stripe.com/aFa14feCE9Um0Npegs7N604"
+    "stripe_link": "https://buy.stripe.com/3cI8wH5244A20Np1tG7N608"
   },
   {
     "tier_id": "early_bird_double",
@@ -57,7 +57,7 @@
     "price": "$140",
     "icon": "👥",
     "image_url": "./converge-2026-flyer.jpg",
-    "stripe_link": "https://buy.stripe.com/tbd_early_bird_double"
+    "stripe_link": "https://buy.stripe.com/eVqdR1cuweaC67J5JW7N609"
   },
   {
     "tier_id": "double",
@@ -75,7 +75,7 @@
     "price": "$160",
     "icon": "👥",
     "image_url": "./converge-2026-flyer.jpg",
-    "stripe_link": "https://buy.stripe.com/eVq14f2TWfeG53F8W87N605"
+    "stripe_link": "https://buy.stripe.com/fZueV5cuw0jMdAbegs7N60a"
   },
   {
     "tier_id": "student",
@@ -93,6 +93,6 @@
     "price": "$40",
     "icon": "🎓",
     "image_url": "./converge-2026-flyer.jpg",
-    "stripe_link": "https://buy.stripe.com/5kQeV51PS3vY53F8W87N606"
+    "stripe_link": "https://buy.stripe.com/aFa14fcuwfeGgMnegs7N60c"
   }
 ]
