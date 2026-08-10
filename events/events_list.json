@@ -8,6 +8,8 @@
     "location": "Computer History Museum, Mountain View, CA",
     "description": "First-ever North America Conference of CEG alumni! Join us on Sept 26, 2026 at the Computer History Museum in Mountain View, CA to reconnect with classmates, hear inspiring talks, network, and grow together.",
     "url": "/converge/2026/",
+    "image": "/converge/2026/converge-2026-flyer.jpg",
+    "flyer_display": "full_portrait",
     "comments": "visit at https://computerhistory.org"
   },
   {
@@ -18,6 +20,7 @@
     "timeLabel": "6:00 PM PST",
     "location": "Zoom Meeting",
     "description": "Join us for a live career session with two professionals sharing experiences, insights, and practical advice on navigating the path into Project Management as a graduate student.",
+    "url_to_be": "https://us02web.zoom.us/meeting/register/O6sOH82uT7uz9-ymgKHheg",
     "url_meet": "https://us02web.zoom.us/j/84418789865?pwd=mjjlqawzb7BASy2MsHdUEhSvZNOFqN.1",
     "zoom_meeting_id": "844 1878 9865",
     "zoom_passcode": "914969",
