@@ -1,0 +1,20 @@
+[
+  {
+    "tier_id": "leaders_forum",
+    "group_key": "leaders_forum",
+    "group_title": "Leaders Forum Registration",
+    "group_icon": "👔",
+    "group_badge": "Executive & Founder Pass",
+    "group_description": "Exclusive morning session for executives, founders, and investors + Full Day Conference.",
+    "option_label": "Leaders Forum Pass",
+    "is_early_bird": false,
+    "conference_date": "2026-09-26",
+    "short_title": "CEG Converge 2026: Leaders Forum Registration",
+    "num_tickets": "1 Person",
+    "description": "Includes morning Leaders Forum session, Breakfast, Networking Lunch & Full Day Conference.",
+    "price": "$500",
+    "icon": "👔",
+    "image_url": "./converge-2026-lf.jpg",
+    "stripe_link": "https://donate.stripe.com/9B614fgKM5E6bs38W87N601"
+  }
+]
