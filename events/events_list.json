@@ -1,6 +1,31 @@
 [
   {
+    "id": 8,
+    "slug": "cegaana-early-career-first-paycheck-financial-freedom-2026",
+    "title": "Early Career: From First Paycheck to Financial Freedom",
+    "category": "webinar",
+    "theme": "green",
+    "date": "2026-09-18T18:00:00-07:00",
+    "timeLabel": "6:00 PM Pacific Time",
+    "location": "Zoom",
+    "description": "CEGAANA invites you to join our session.<br><br><strong>Key Highlights:</strong><br>&bull; Building healthy financial habits.<br>&bull; Learn practical approaches to managing money.<br>&bull; Long-term financial freedom.",
+    "url": "https://us02web.zoom.us/meeting/register/p2EwXNn4QRiSR_HQIwl6TQ",
+    "comments": "CEGAANA Early Career Session: From First Paycheck to Financial Freedom — How to Set Yourself Up for Financial Success. CEGAANA invites early-career professionals to join this practical session on managing their first paycheck, developing healthy financial habits, and planning for long-term financial success. After registering, attendees will receive a confirmation email containing information about joining the Zoom meeting.",
+    "url_meet": "https://us02web.zoom.us/meeting/register/p2EwXNn4QRiSR_HQIwl6TQ",
+    "panelists": [
+      {
+        "name": "Sundar Jeyaraman",
+        "url": "https://www.linkedin.com/in/sjeyaraman"
+      },
+      {
+        "name": "Abiramashree Adaikalam",
+        "url": "https://www.linkedin.com/in/abiramashree"
+      }
+    ]
+  },
+  {
     "id": 6,
+    "slug": "converge-2026",
     "title": "CEG Converge 2026",
     "category": "meet",
     "date": "2026-09-26T12:30:00-07:00",
@@ -16,6 +41,7 @@
   },
   {
     "id": 7,
+    "slug": "pm-panel-2026",
     "title": "Panel Discussion: Breaking into Project Management",
     "category": "panel",
     "date": "2026-08-21T18:00:00-07:00",
@@ -56,6 +82,7 @@
   },
   {
     "id": 5,
+    "slug": "lake-22-hike-2026",
     "title": "CEG Echo: Lake 22 Hike (near Seattle)",
     "category": "outdoor",
     "date": "2026-06-20T14:00:00-07:00",
@@ -66,6 +93,7 @@
   },
   {
     "id": 4,
+    "slug": "ml-ai-panel-2026",
     "title": "Panel Discussion: How to Crack ML & AI Roles",
     "category": "panel",
     "date": "2026-05-29T18:00:00-07:00",

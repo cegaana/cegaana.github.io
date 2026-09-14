@@ -15,6 +15,8 @@
     "price": "$500",
     "icon": "👔",
     "image_url": "./converge-2026-lf.jpg",
-    "stripe_link": "https://donate.stripe.com/9B614fgKM5E6bs38W87N601"
+    "stripe_link": "https://donate.stripe.com/9B614fgKM5E6bs38W87N601",
+    "buy_button_id": "buy_btn_1TxsAa0p6RBcR273ReuZmdlj",
+    "publishable_key": "pk_live_51SsSh00p6RBcR273xCnoGe111LbS0BGgNUjzDwuK7fmmd9qukvw9XTfP8uyB10q1DssUdp8zIwKHL9fv3BfQbXtP00ymrJsiOv"
   }
 ]

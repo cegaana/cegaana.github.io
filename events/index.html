@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://cegaana.github.io/events/" id="og-url">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" crossorigin href="/assets/styles-B4fQrhEg.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-CYt0fggs.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
     <script>
@@ -103,7 +103,8 @@
                         const card = document.createElement('div');
                         card.id = `event-${event.id}`;
                         const isCompleted = new Date(event.date) < new Date();
-                        const themeClass = event.category ? `theme-${event.category}` : 'theme-default';
+                        const themeName = event.theme || event.category || 'default';
+                        const themeClass = `theme-${themeName}`;
 
                         const shareIconHTML = `
                             <button onclick="copyEventLink(event, '${event.id}', '${event.title.replace(/'/g, "\\'")}')" title="Copy Link to Share" style="position: absolute; top: 15px; right: 15px; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.5; transition: opacity 0.2s; z-index: 2;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
@@ -171,7 +172,7 @@
                                         <p style="margin: 5px 0;">📍 <strong>Mode:</strong> ${event.location}</p>
                                         ${panelistsHTML}
                                     </div>
-                                    <p style="margin-bottom: 20px;">${event.description}</p>
+                                    <p style="margin-bottom: 20px; text-align: left; padding: 0 8px; white-space: pre-line;">${event.description}</p>
                                     ${joinBtnHTML}
                                 `;
                                 card.style.display = 'flex';
