@@ -47,6 +47,13 @@
             <!-- Events will be populated here by JavaScript -->
         </div>
 
+        <div id="past-events-section" style="margin-top: 50px; display: none;">
+            <h3 style="border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 24px; color: var(--secondary-color, #124E78); font-size: 1.4rem;">Past Events</h3>
+            <div id="past-events-list" style="display: flex; flex-direction: column; gap: 16px;">
+                <!-- Simple list of past events populated here -->
+            </div>
+        </div>
+
         <div style="text-align: center; margin-top: 2rem;">
             <a href="../index.html" class="btn">Back to Home</a>
         </div>
@@ -63,6 +70,8 @@
             let currentView = 'flyer';
 
             const eventsGrid = document.getElementById('all-events-list');
+            const pastEventsSection = document.getElementById('past-events-section');
+            const pastEventsList = document.getElementById('past-events-list');
             const toggleCheckbox = document.getElementById('view-toggle-checkbox');
             const labelCards = document.getElementById('label-cards');
             const labelFlyer = document.getElementById('label-flyer');
@@ -88,184 +97,260 @@
                 return new Date(dateStr).toLocaleDateString(undefined, options);
             }
 
-            function renderEvents() {
-                eventsGrid.innerHTML = '';
-                if (allEvents && allEvents.length > 0) {
-                    allEvents.forEach((event, index) => {
-                        const dateStr = formatEventDate(event.date, {
-                            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                        });
+            function getEventTime(event) {
+                return event.timeLabel || new Date(event.date).toLocaleTimeString(undefined, {
+                    hour: '2-digit', minute: '2-digit'
+                });
+            }
 
-                        const timeStr = event.timeLabel ? event.timeLabel : new Date(event.date).toLocaleTimeString(undefined, {
-                            hour: '2-digit', minute: '2-digit'
-                        });
+            function splitEvents(events) {
+                const now = new Date();
+                const active = [];
+                const past = [];
 
-                        const card = document.createElement('div');
-                        card.id = `event-${event.id}`;
-                        const isCompleted = new Date(event.date) < new Date();
-                        const themeName = event.theme || event.category || 'default';
-                        const themeClass = `theme-${themeName}`;
-
-                        const shareIconHTML = `
-                            <button onclick="copyEventLink(event, '${event.id}', '${event.title.replace(/'/g, "\\'")}')" title="Copy Link to Share" style="position: absolute; top: 15px; right: 15px; background: none; border: none; cursor: pointer; color: inherit; opacity: 0.5; transition: opacity 0.2s; z-index: 2;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.5'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="18" cy="5" r="3"></circle>
-                                    <circle cx="6" cy="12" r="3"></circle>
-                                    <circle cx="18" cy="19" r="3"></circle>
-                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                </svg>
-                            </button>
-                        `;
-
-                        if (isCompleted) {
-                            let panelistsText = '';
-                            if (event.panelists && event.panelists.length > 0) {
-                                const names = event.panelists.map(p => p.name).join(', ');
-                                panelistsText = `<p style="margin: 5px 0; font-size: 0.9em; color: #666;">🎙 <strong>Panelists:</strong> ${names}</p>`;
-                            }
-
-                            card.className = `card ${themeClass}`;
-                            card.style.opacity = '0.7';
-                            card.style.position = 'relative';
-                            card.innerHTML = `
-                                ${shareIconHTML}
-                                <h4 style="margin-bottom: 10px; color: #555;">${event.title} <span style="font-size: 0.8em; font-weight: normal;">(Completed)</span></h4>
-                                <p style="margin: 5px 0; font-size: 0.9em; color: #666;">📅 <strong>Date:</strong> ${dateStr}</p>
-                                ${panelistsText}
-                            `;
-                            card.style.display = 'flex';
-                            card.style.flexDirection = 'column';
-                        } else {
-                            const eventImg = event.image || event.image_url || '';
-                            const resolvedImg = eventImg ? (eventImg.startsWith('/') ? '..' + eventImg : eventImg) : '';
-
-                            if (currentView === 'cards') {
-                                let panelistsHTML = '';
-                                if (event.panelists && event.panelists.length > 0) {
-                                    const names = event.panelists.map(p => `<a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a>`).join(', ');
-                                    panelistsHTML = `<p style="margin: 5px 0;">🎙 <strong>Speakers:</strong> ${names}</p>`;
-                                }
-
-                                const cardTint = (index % 4) + 1;
-                                card.className = `card card-tint-${cardTint} ${themeClass}`;
-                                card.style.backgroundColor = 'var(--theme-simple-bg, #ffffff)';
-                                card.style.position = 'relative';
-
-                                const joinBtnHTML = event.url
-                                    ? `<a href="${event.url}" class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: auto; background-color: var(--theme-simple-btn, var(--primary-color));">🔗 Register</a>`
-                                    : `<button class="btn" disabled style="margin-top: auto; opacity: 0.65; cursor: not-allowed; border: none; font-family: inherit; font-size: inherit; background-color: var(--theme-simple-btn, var(--primary-color));">Coming Soon</button>`;
-
-                                const cardImgHTML = resolvedImg ? `
-                                    <div style="width: 100%; height: 160px; margin-bottom: 15px; border-radius: 8px; overflow: hidden; background: #f4f4f4;">
-                                        <img src="${resolvedImg}" alt="${event.title}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                                    </div>
-                                ` : '';
-
-                                card.innerHTML = `
-                                    ${shareIconHTML}
-                                    ${cardImgHTML}
-                                    <h4 style="margin-bottom: 10px; padding-right: 25px;">${event.title}</h4>
-                                    <div style="font-size: 0.95em; color: #444; margin-bottom: 15px;">
-                                        <p style="margin: 5px 0;">📅 <strong>Date:</strong> ${dateStr}</p>
-                                        <p style="margin: 5px 0;">⏰ <strong>Time:</strong> ${timeStr}</p>
-                                        <p style="margin: 5px 0;">📍 <strong>Mode:</strong> ${event.location}</p>
-                                        ${panelistsHTML}
-                                    </div>
-                                    <p style="margin-bottom: 20px; text-align: left; padding: 0 8px; white-space: pre-line;">${event.description}</p>
-                                    ${joinBtnHTML}
-                                `;
-                                card.style.display = 'flex';
-                                card.style.flexDirection = 'column';
-                            } else {
-                                let panelistsNamesHTML = '';
-                                if (event.panelists && event.panelists.length > 0) {
-                                    panelistsNamesHTML = event.panelists.map(p => `<p class="card-rich-names"><a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a></p>`).join('');
-                                    panelistsNamesHTML = `<div class="card-rich-section-title" style="margin-top: 10px;">FEATURED PANELISTS</div>${panelistsNamesHTML}`;
-                                }
-
-                                // Highlight format: Split title on colon if present, or just highlight the last word
-                                let formattedTitle = event.title;
-                                if (formattedTitle.includes(':')) {
-                                    formattedTitle = formattedTitle.replace(':', '<br><span class="card-rich-highlight">') + '</span>';
-                                } else {
-                                    const words = formattedTitle.split(' ');
-                                    if (words.length > 1) {
-                                        const last = words.pop();
-                                        formattedTitle = words.join(' ') + ` <span class="card-rich-highlight">${last}</span>`;
-                                    }
-                                }
-
-                                const joinBtnHTML = event.url
-                                    ? `<a href="${event.url}" class="card-rich-btn" target="_blank" rel="noopener noreferrer">REGISTER</a>`
-                                    : `<button class="card-rich-btn" disabled style="opacity: 0.65; cursor: not-allowed; border: none; font-family: inherit;">Coming Soon</button>`;
-
-                                const isPortrait = event.flyer_display === 'full_portrait' || event.flyer_display === 'portrait' || event.image_aspect === 'portrait';
-                                const hideTextHeader = Boolean(event.hide_text_header || event.hide_info_box || isPortrait);
-
-                                const flyerImgHTML = resolvedImg ? `
-                                    <div style="width: 100%; margin: 10px 0 15px 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.25); ${isPortrait ? 'background: rgba(0,0,0,0.15);' : 'max-height: 260px;'} z-index: 1;">
-                                        <img src="${resolvedImg}" alt="${event.title}" style="width: 100%; ${isPortrait ? 'height: auto; max-height: 520px; object-fit: contain;' : 'height: 100%; max-height: 260px; object-fit: cover;'} display: block; margin: 0 auto;">
-                                    </div>
-                                ` : '';
-
-                                const datePartHTML = `<span style="display: inline-block; white-space: nowrap;">${dateStr.toUpperCase()}</span>`;
-                                const timePartHTML = `<span style="display: inline-block; white-space: nowrap;">${timeStr.toUpperCase().replace(/\s*-\s*/g, ' &ndash; ')}</span>`;
-
-                                const isOnlineEvent = event.is_online !== undefined
-                                    ? Boolean(event.is_online)
-                                    : /\b(zoom|meet|online|virtual|webex|teams)\b/i.test(event.location || '');
-
-                                const locPrefix = event.location_prefix !== undefined
-                                    ? (event.location_prefix ? event.location_prefix.trim() + ' ' : '')
-                                    : (isOnlineEvent ? 'LIVE ON ' : '');
-
-                                const titleAndInfoBoxHTML = (!hideTextHeader) ? `
-                                    <h1 class="card-rich-title">${formattedTitle.toUpperCase()}</h1>
-                                    <div class="card-rich-info-box">
-                                        <p class="card-rich-info-text">${datePartHTML} <span style="display: inline-block; margin: 0 4px;">&bull;</span> ${timePartHTML}</p>
-                                        <p class="card-rich-info-sub">📍 ${locPrefix}${event.location.toUpperCase()}</p>
-                                    </div>
-                                ` : '';
-
-                                card.className = `card-rich ${themeClass}`;
-                                card.innerHTML = `
-                                    ${shareIconHTML}
-                                    <div class="card-rich-grid"></div>
-                                    <div class="card-rich-header">
-                                        <img src="../cegaana-square-logo.jpg" class="card-rich-logo" alt="CEGAANA">
-                                        <div class="card-rich-org">CEGAANA PRESENTS</div>
-                                    </div>
-                                    ${titleAndInfoBoxHTML}
-                                    ${flyerImgHTML}
-                                    ${panelistsNamesHTML}
-                                    <div class="card-rich-topics">${event.description}</div>
-                                    ${joinBtnHTML}
-                                `;
-                            }
-                        }
-
-                        eventsGrid.appendChild(card);
-                    });
-
-                    // Scroll to hash if present on load
-                    if (window.location.hash) {
-                        setTimeout(() => {
-                            const el = document.getElementById(window.location.hash.substring(1));
-                            if (el) el.scrollIntoView({ behavior: 'smooth' });
-
-                            // Update OG tags dynamically if single event link
-                            const eventId = window.location.hash.substring(1).replace('event-', '');
-                            const evt = allEvents.find(e => e.id == eventId);
-                            if (evt) {
-                                document.getElementById('og-title').content = evt.title;
-                                document.getElementById('og-desc').content = evt.description;
-                            }
-                        }, 500);
+                (events || []).forEach(event => {
+                    const eventDate = new Date(event.date);
+                    if (eventDate < now) {
+                        past.push(event);
+                    } else {
+                        active.push(event);
                     }
-                } else {
-                    eventsGrid.innerHTML = '<p>No upcoming events at this time.</p>';
+                });
+
+                active.sort((a, b) => new Date(a.date) - new Date(b.date));
+                past.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                return { active, past };
+            }
+
+            function createShareButton(event, isLight = false) {
+                const colorStyle = isLight ? 'color: inherit; opacity: 0.5;' : 'color: #64748b; opacity: 0.6;';
+                const escapedTitle = (event.title || '').replace(/'/g, "\\'");
+                const iconSize = isLight ? '20' : '18';
+                return `
+                    <button onclick="copyEventLink(event, '${event.id}', '${escapedTitle}')" title="Copy Link to Share" style="position: absolute; top: 14px; right: 14px; background: none; border: none; cursor: pointer; ${colorStyle} transition: opacity 0.2s; z-index: 2;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${isLight ? '0.5' : '0.6'}'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="${iconSize}" height="${iconSize}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                    </button>
+                `;
+            }
+
+            function buildCardElement(event, index) {
+                const dateStr = formatEventDate(event.date, {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+                const timeStr = getEventTime(event);
+                const themeName = event.theme || event.category || 'default';
+                const cardTint = (index % 4) + 1;
+
+                const card = document.createElement('div');
+                card.id = `event-${event.id}`;
+                card.className = `card card-tint-${cardTint} theme-${themeName}`;
+                card.style.backgroundColor = 'var(--theme-simple-bg, #ffffff)';
+                card.style.position = 'relative';
+                card.style.display = 'flex';
+                card.style.flexDirection = 'column';
+
+                const eventImg = event.image || event.image_url || '';
+                const resolvedImg = eventImg ? (eventImg.startsWith('/') ? '..' + eventImg : eventImg) : '';
+                const cardImgHTML = resolvedImg ? `
+                    <div style="width: 100%; height: 160px; margin-bottom: 15px; border-radius: 8px; overflow: hidden; background: #f4f4f4;">
+                        <img src="${resolvedImg}" alt="${event.title}" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                ` : '';
+
+                let panelistsHTML = '';
+                if (event.panelists && event.panelists.length > 0) {
+                    const names = event.panelists.map(p => `<a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a>`).join(', ');
+                    panelistsHTML = `<p style="margin: 5px 0;">🎙 <strong>Speakers:</strong> ${names}</p>`;
                 }
+
+                const joinBtnHTML = event.url
+                    ? `<a href="${event.url}" class="btn" target="_blank" rel="noopener noreferrer" style="margin-top: auto; background-color: var(--theme-simple-btn, var(--primary-color));">🔗 Register</a>`
+                    : `<button class="btn" disabled style="margin-top: auto; opacity: 0.65; cursor: not-allowed; border: none; font-family: inherit; font-size: inherit; background-color: var(--theme-simple-btn, var(--primary-color));">Coming Soon</button>`;
+
+                card.innerHTML = `
+                    ${createShareButton(event, true)}
+                    ${cardImgHTML}
+                    <h4 style="margin-bottom: 10px; padding-right: 25px;">${event.title}</h4>
+                    <div style="font-size: 0.95em; color: #444; margin-bottom: 15px;">
+                        <p style="margin: 5px 0;">📅 <strong>Date:</strong> ${dateStr}</p>
+                        <p style="margin: 5px 0;">⏰ <strong>Time:</strong> ${timeStr}</p>
+                        <p style="margin: 5px 0;">📍 <strong>Mode:</strong> ${event.location}</p>
+                        ${panelistsHTML}
+                    </div>
+                    <p style="margin-bottom: 20px; text-align: left; padding: 0 8px; white-space: pre-line;">${event.description}</p>
+                    ${joinBtnHTML}
+                `;
+                return card;
+            }
+
+            function buildFlyerElement(event) {
+                const dateStr = formatEventDate(event.date, {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+                const timeStr = getEventTime(event);
+                const themeName = event.theme || event.category || 'default';
+
+                const card = document.createElement('div');
+                card.id = `event-${event.id}`;
+                card.className = `card-rich theme-${themeName}`;
+
+                let panelistsNamesHTML = '';
+                if (event.panelists && event.panelists.length > 0) {
+                    panelistsNamesHTML = event.panelists.map(p => `<p class="card-rich-names"><a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.name}</a></p>`).join('');
+                    panelistsNamesHTML = `<div class="card-rich-section-title" style="margin-top: 10px;">FEATURED PANELISTS</div>${panelistsNamesHTML}`;
+                }
+
+                let formattedTitle = event.title;
+                if (formattedTitle.includes(':')) {
+                    formattedTitle = formattedTitle.replace(':', '<br><span class="card-rich-highlight">') + '</span>';
+                } else {
+                    const words = formattedTitle.split(' ');
+                    if (words.length > 1) {
+                        const last = words.pop();
+                        formattedTitle = words.join(' ') + ` <span class="card-rich-highlight">${last}</span>`;
+                    }
+                }
+
+                const joinBtnHTML = event.url
+                    ? `<a href="${event.url}" class="card-rich-btn" target="_blank" rel="noopener noreferrer">REGISTER</a>`
+                    : `<button class="card-rich-btn" disabled style="opacity: 0.65; cursor: not-allowed; border: none; font-family: inherit;">Coming Soon</button>`;
+
+                const isPortrait = event.flyer_display === 'full_portrait' || event.flyer_display === 'portrait' || event.image_aspect === 'portrait';
+                const hideTextHeader = Boolean(event.hide_text_header || event.hide_info_box || isPortrait);
+
+                const eventImg = event.image || event.image_url || '';
+                const resolvedImg = eventImg ? (eventImg.startsWith('/') ? '..' + eventImg : eventImg) : '';
+                const flyerImgHTML = resolvedImg ? `
+                    <div style="width: 100%; margin: 10px 0 15px 0; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.25); ${isPortrait ? 'background: rgba(0,0,0,0.15);' : 'max-height: 260px;'} z-index: 1;">
+                        <img src="${resolvedImg}" alt="${event.title}" style="width: 100%; ${isPortrait ? 'height: auto; max-height: 520px; object-fit: contain;' : 'height: 100%; max-height: 260px; object-fit: cover;'} display: block; margin: 0 auto;">
+                    </div>
+                ` : '';
+
+                const datePartHTML = `<span style="display: inline-block; white-space: nowrap;">${dateStr.toUpperCase()}</span>`;
+                const timePartHTML = `<span style="display: inline-block; white-space: nowrap;">${timeStr.toUpperCase().replace(/\s*-\s*/g, ' &ndash; ')}</span>`;
+
+                const isOnlineEvent = event.is_online !== undefined
+                    ? Boolean(event.is_online)
+                    : /\b(zoom|meet|online|virtual|webex|teams)\b/i.test(event.location || '');
+
+                const locPrefix = event.location_prefix !== undefined
+                    ? (event.location_prefix ? event.location_prefix.trim() + ' ' : '')
+                    : (isOnlineEvent ? 'LIVE ON ' : '');
+
+                const titleAndInfoBoxHTML = (!hideTextHeader) ? `
+                    <h1 class="card-rich-title">${formattedTitle.toUpperCase()}</h1>
+                    <div class="card-rich-info-box">
+                        <p class="card-rich-info-text">${datePartHTML} <span style="display: inline-block; margin: 0 4px;">&bull;</span> ${timePartHTML}</p>
+                        <p class="card-rich-info-sub">📍 ${locPrefix}${event.location.toUpperCase()}</p>
+                    </div>
+                ` : '';
+
+                card.innerHTML = `
+                    ${createShareButton(event, true)}
+                    <div class="card-rich-grid"></div>
+                    <div class="card-rich-header">
+                        <img src="../cegaana-square-logo.jpg" class="card-rich-logo" alt="CEGAANA">
+                        <div class="card-rich-org">CEGAANA PRESENTS</div>
+                    </div>
+                    ${titleAndInfoBoxHTML}
+                    ${flyerImgHTML}
+                    ${panelistsNamesHTML}
+                    <div class="card-rich-topics">${event.description}</div>
+                    ${joinBtnHTML}
+                `;
+                return card;
+            }
+
+            function buildPastEventRow(event) {
+                const dateStr = formatEventDate(event.date, {
+                    weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+                });
+                let panelistsText = '';
+                if (event.panelists && event.panelists.length > 0) {
+                    const names = event.panelists.map(p => `<a href="${p.url}" target="_blank" rel="noopener noreferrer" style="color: #475569;">${p.name}</a>`).join(', ');
+                    panelistsText = `🎙 <strong>Speakers:</strong> ${names}`;
+                }
+
+                const item = document.createElement('div');
+                item.id = `event-${event.id}`;
+                item.style.cssText = 'background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.04); text-align: left;';
+
+                const eventTitleHTML = event.url
+                    ? `<a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: var(--secondary-color, #124E78); text-decoration: none; font-weight: 700;">${event.title}</a>`
+                    : `<strong style="color: #1e293b;">${event.title}</strong>`;
+
+                item.innerHTML = `
+                    ${createShareButton(event, false)}
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; padding-right: 32px;">
+                        <h4 style="margin: 0; font-size: 1.05rem;">${eventTitleHTML} <span style="font-size: 0.8rem; font-weight: normal; color: #94a3b8;">(Completed)</span></h4>
+                        <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">📅 ${dateStr}</span>
+                    </div>
+                    <div style="font-size: 0.88rem; color: #64748b; display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 6px;">
+                        <span>📍 ${event.location}</span>
+                        ${panelistsText ? `<span>${panelistsText}</span>` : ''}
+                    </div>
+                    ${event.description ? `<p style="margin: 6px 0 0 0; font-size: 0.88rem; color: #64748b; white-space: pre-line; line-height: 1.5;">${event.description}</p>` : ''}
+                `;
+                return item;
+            }
+
+            function renderActiveEvents(activeEvents, viewMode) {
+                eventsGrid.innerHTML = '';
+                if (!activeEvents || activeEvents.length === 0) {
+                    eventsGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: #666; font-size: 1.1rem; padding: 40px 0;">No upcoming events scheduled at this time.</p>';
+                    return;
+                }
+
+                activeEvents.forEach((event, index) => {
+                    const el = (viewMode === 'cards')
+                        ? buildCardElement(event, index)
+                        : buildFlyerElement(event);
+                    eventsGrid.appendChild(el);
+                });
+            }
+
+            function renderPastEvents(pastEvents) {
+                if (!pastEvents || pastEvents.length === 0) {
+                    pastEventsSection.style.display = 'none';
+                    return;
+                }
+
+                pastEventsSection.style.display = 'block';
+                pastEventsList.innerHTML = '';
+                pastEvents.forEach(event => {
+                    pastEventsList.appendChild(buildPastEventRow(event));
+                });
+            }
+
+            function handleHashNavigation() {
+                if (!window.location.hash) return;
+                setTimeout(() => {
+                    const el = document.getElementById(window.location.hash.substring(1));
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+
+                    const eventId = window.location.hash.substring(1).replace('event-', '');
+                    const evt = allEvents.find(e => e.id == eventId);
+                    if (evt) {
+                        const ogTitle = document.getElementById('og-title');
+                        const ogDesc = document.getElementById('og-desc');
+                        if (ogTitle) ogTitle.content = evt.title;
+                        if (ogDesc) ogDesc.content = evt.description;
+                    }
+                }, 500);
+            }
+
+            function renderEvents() {
+                const { active, past } = splitEvents(allEvents);
+                renderActiveEvents(active, currentView);
+                renderPastEvents(past);
+                handleHashNavigation();
             }
 
             fetch('./events_list.json')
