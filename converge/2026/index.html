@@ -36,9 +36,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
         rel="stylesheet">
-  <script type="module" crossorigin src="/assets/converge_2026_index-BFtUN35d.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/event-helpers-2DwBrOiY.js">
-  <link rel="stylesheet" crossorigin href="/assets/event-helpers-D6YRZGUh.css">
+  <script type="module" crossorigin src="/assets/converge_2026_index-DM2yCOGW.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/event-helpers-BYSsTZPS.js">
+  <link rel="stylesheet" crossorigin href="/assets/event-helpers-D_3a5KOO.css">
   <link rel="stylesheet" crossorigin href="/assets/styles-CYt0fggs.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
@@ -138,64 +138,65 @@
                 </div>
             </div>
 
-            <!-- Card 2: Structured Product Catalog / Registration Tiers -->
-            <div id="paymentCard" class="card payment-card">
-                <div class="card-header" style="justify-content: center; margin-bottom: 0.5rem;">
-                    <h2 class="card-title" style="color: var(--converge-primary);">Registration Options</h2>
-                </div>
+            <!-- Right Column: Registration, Venue & Accommodations grouped together on desktop -->
+            <div class="content-right-column">
 
-                <p style="font-size: 0.9rem; color: var(--converge-text-muted); margin-bottom: 1rem;">
-                    Select your preferred registration tier below. <br />Includes networking lunch & full day access.
-                </p>
-
-                <!-- Structured Product Catalog Grid (Data Driven) -->
-                <div id="catalogGrid" class="catalog-grid"></div>
-                <!-- 
-                <div class="tax-note">
-                    <strong>501(c)(3) Non-Profit Tax Deduction:</strong><br>
-                    CEGAANA is a registered 501(c)(3) non-profit organization. Registration proceeds fund CEG student
-                    scholarships
-                    and campus development. Contributions are tax-deductible to the extent allowed by law.
-                </div> -->
-            </div>
-
-            <!-- Card 3: Venue -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">📍</div>
-                    <h2 class="card-title">Venue</h2>
-                </div>
-                <!-- Venue Location Box -->
-                <div class="venue-box">
-                    <div class="venue-name">Computer History Museum</div>
-                    <div style="font-size: 0.92rem; color: #4C1D95;">1401 N Shoreline Blvd, Mountain View, CA 94043
+                <!-- Card 2: Structured Product Catalog / Registration Tiers -->
+                <div id="paymentCard" class="card payment-card">
+                    <div class="card-header" style="justify-content: center; margin-bottom: 0.5rem;">
+                        <h2 class="card-title" style="color: var(--converge-primary);">Registration Options</h2>
                     </div>
-                    <div style="margin-top: 12px; text-align: center;">
-                        <a href="https://maps.google.com/?q=Computer+History+Museum+Mountain+View+CA" target="_blank"
-                            rel="noopener noreferrer" class="map-btn">
-                            Open in Google Maps &rarr;
-                        </a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Card 4: Accommodations -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon">🏨</div>
-                    <h2 class="card-title">Accommodations</h2>
+                    <!-- Structured Product Catalog Grid (Data Driven; intro copy is rendered by renderProductCatalog) -->
+                    <div id="catalogGrid" class="catalog-grid"></div>
+                    <!--
+                    <div class="tax-note">
+                        <strong>501(c)(3) Non-Profit Tax Deduction:</strong><br>
+                        CEGAANA is a registered 501(c)(3) non-profit organization. Registration proceeds fund CEG student
+                        scholarships
+                        and campus development. Contributions are tax-deductible to the extent allowed by law.
+                    </div> -->
                 </div>
-                <!-- Accommodations Box -->
-                <div class="venue-box" style="background: #F8FAFC; border-color: #CBD5E1; padding: 1.2rem;">
-                    <div class="venue-name" style="font-size: 1.02rem; color: #1E293B; margin-bottom: 4px;">Traveling to
-                        Mountain View? <span style="font-size: 0.88rem;">Nearby hotels</span></div>
-                    <div style="text-align: center;">
-                        <a href="https://www.google.com/travel/hotels/Mountain+View,+CA?q=Hotels+near+Computer+History+Museum,+Mountain+View,+CA&tcfs=EhoaGAoKMjAyNi0wOS0yNRIKMjAyNi0wOS0yN1AB"
-                            target="_blank" rel="noopener noreferrer" class="map-btn-solid">
-                            🏨 Find Nearby Hotels (Sep 25 – 27) &rarr;
-                        </a>
+
+                <!-- Card 3: Venue -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📍</div>
+                        <h2 class="card-title">Venue</h2>
+                    </div>
+                    <!-- Venue Location Box -->
+                    <div class="venue-box">
+                        <div class="venue-name">Computer History Museum</div>
+                        <div style="font-size: 0.92rem; color: #4C1D95;">1401 N Shoreline Blvd, Mountain View, CA 94043
+                        </div>
+                        <div style="margin-top: 12px; text-align: center;">
+                            <a href="https://maps.google.com/?q=Computer+History+Museum+Mountain+View+CA" target="_blank"
+                                rel="noopener noreferrer" class="map-btn">
+                                Open in Google Maps &rarr;
+                            </a>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Card 4: Accommodations -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🏨</div>
+                        <h2 class="card-title">Accommodations</h2>
+                    </div>
+                    <!-- Accommodations Box -->
+                    <div class="venue-box" style="background: #F8FAFC; border-color: #CBD5E1; padding: 1.2rem;">
+                        <div class="venue-name" style="font-size: 1.02rem; color: #1E293B; margin-bottom: 4px;">Traveling to
+                            Mountain View? <span style="font-size: 0.88rem;">Nearby hotels</span></div>
+                        <div style="text-align: center;">
+                            <a href="https://www.google.com/travel/hotels/Mountain+View,+CA?q=Hotels+near+Computer+History+Museum,+Mountain+View,+CA&tcfs=EhoaGAoKMjAyNi0wOS0yNRIKMjAyNi0wOS0yN1AB"
+                                target="_blank" rel="noopener noreferrer" class="map-btn-solid">
+                                🏨 Find Nearby Hotels (Sep 25 – 27) &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Card 3: Schedule-->
