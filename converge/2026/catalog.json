@@ -30,6 +30,8 @@
     "option_label": "Regular Registration",
     "is_early_bird": false,
     "conference_date": "2026-09-26",
+    "expires_on": "2026-09-19",
+    "expiration_label": "Ends Sep 19",
     "short_title": "CEG Converge 2026: Single Ticket",
     "num_tickets": "1 Person",
     "description": "Admission ticket for one person.",
