@@ -17,15 +17,15 @@ END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.c
                 <h3 style="font-family: 'Outfit', sans-serif; margin-bottom: 0.5rem; font-size: 1.2rem;">Registration Closed</h3>
                 <p style="font-size: 0.92rem; margin: 0; color: #742A2A;">Online registration for CEG Converge 2026 is currently closed.</p>
             </div>
-        `;return}let c=(i&&s.some(e=>e.allow_special_access)?`
+        `;return}let c=i?s.find(e=>e.allow_special_access):null,l=!!c,u=`soon`;if(c)if(c.extended_expires_on){let e=String(c.extended_expires_on).split(`-`);e.length===3&&(u=`${[`Jan`,`Feb`,`Mar`,`Apr`,`May`,`Jun`,`Jul`,`Aug`,`Sep`,`Oct`,`Nov`,`Dec`][parseInt(e[1],10)-1]||``} ${parseInt(e[2],10)}`.trim())}else c.extended_expiration_label&&(u=c.extended_expiration_label.replace(/^.*(?:Ends|Through)\s+/i,``).trim());let d=(l?`
         <div class="special-access-banner">
             <div class="special-access-icon">⭐</div>
             <div class="special-access-content">
                 <strong>Special Invitation Access:</strong>
-                Registration has been reopened for invited attendees. This last-minute link remains active through Sep 25.
+                Registration has been reopened for invited attendees. This last-minute link remains active through ${u}.
             </div>
         </div>
-    `:``)+`<p class="catalog-intro-text" style="font-size: 0.9rem; color: var(--converge-text-muted); margin-bottom: 1rem;">${s.length===1?`Includes networking lunch & full conference access.`:`Select your preferred registration tier below. <br />Includes networking lunch & full conference access.`}</p>`,l=new Map;s.forEach(e=>{let t=e.group_key||(e.tier_id.includes(`single`)?`single`:e.tier_id.includes(`double`)?`double`:`student`),n=i&&e.allow_special_access?`⭐ Special Invitation`:e.group_badge||e.num_tickets||``;l.has(t)||l.set(t,{key:t,title:e.group_title||(t===`single`?`Single Ticket`:t===`double`?`Double Tickets`:`Student & Recent Grad Pass`),icon:e.group_icon||(t===`single`?`👤`:t===`double`?`👥`:`🎓`),badge:n,description:e.group_description||e.description||``,items:[]}),l.get(t).items.push(e)});let u=Array.from(l.values()).map(e=>(e.items.sort(e=>e.is_early_bird||e.tier_id.includes(`early_bird`)?-1:1),e)),d=e=>{let t=!!(i&&e.allow_special_access),n=!!(e.is_early_bird||e.tier_id.includes(`early_bird`)),r=t?`Special Registration (Invited)`:e.option_label||(n?`⚡ Early Bird Special`:`Regular Registration`),a=t?`⭐ Special Access`:e.savings_badge||(n?e.tier_id.includes(`double`)?`Save $20`:`Save $15`:``),o=t?`option-special`:n?`option-early-bird`:`option-regular`,s=t?`option-special-tag`:`option-savings-tag`,c=t?`btn-special`:n?`btn-eb`:`btn-reg`,l=t?`Register (Special Access) &rarr;`:`Register &rarr;`;return`
+    `:``)+`<p class="catalog-intro-text" style="font-size: 0.9rem; color: var(--converge-text-muted); margin-bottom: 1rem;">${s.length===1?`Includes networking lunch & full conference access.`:`Select your preferred registration tier below. <br />Includes networking lunch & full conference access.`}</p>`,f=new Map;s.forEach(e=>{let t=e.group_key||(e.tier_id.includes(`single`)?`single`:e.tier_id.includes(`double`)?`double`:`student`),n=i&&e.allow_special_access?`⭐ Special Invitation`:e.group_badge||e.num_tickets||``;f.has(t)||f.set(t,{key:t,title:e.group_title||(t===`single`?`Single Ticket`:t===`double`?`Double Tickets`:`Student & Recent Grad Pass`),icon:e.group_icon||(t===`single`?`👤`:t===`double`?`👥`:`🎓`),badge:n,description:e.group_description||e.description||``,items:[]}),f.get(t).items.push(e)});let p=Array.from(f.values()).map(e=>(e.items.sort(e=>e.is_early_bird||e.tier_id.includes(`early_bird`)?-1:1),e)),m=e=>{let t=!!(i&&e.allow_special_access),n=!!(e.is_early_bird||e.tier_id.includes(`early_bird`)),r=t?`Special Registration (Invited)`:e.option_label||(n?`⚡ Early Bird Special`:`Regular Registration`),a=t?`⭐ Special Access`:e.savings_badge||(n?e.tier_id.includes(`double`)?`Save $20`:`Save $15`:``),o=t?`option-special`:n?`option-early-bird`:`option-regular`,s=t?`option-special-tag`:`option-savings-tag`,c=t?`btn-special`:n?`btn-eb`:`btn-reg`,l=t?`Register (Special Access) &rarr;`:`Register &rarr;`;return`
         <div class="option-row ${o}">
             <div class="option-title-group">
                 <span class="option-label">${r}</span>
@@ -40,7 +40,7 @@ END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.c
                 <a href="${e.stripe_link||`#`}" target="_blank" rel="noopener noreferrer" class="option-btn ${c}">${l}</a>
             </div>
         </div>
-        `};r.innerHTML=c+u.map(e=>`
+        `};r.innerHTML=d+p.map(e=>`
         <div class="type-card-block">
             <div class="type-card-header">
                 <div class="type-icon-badge">${e.icon}</div>
@@ -53,7 +53,7 @@ END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.c
                 </div>
             </div>
             <div class="type-options-list">
-                ${e.items.map(d).join(``)}
+                ${e.items.map(m).join(``)}
             </div>
         </div>
     `).join(``)}function s(e,t){let n=typeof e==`string`?document.getElementById(e):e;if(!n||!t)return;let r=t.title||`CEG Converge 2026`,i=t.dtStart||`20260926T190000Z`,a=t.dtEnd||`20260927T010000Z`,o=t.location||`Computer History Museum, 1401 N Shoreline Blvd, Mountain View, CA 94043`,s=t.description||`CEGAANA ${r} at ${o}.`,c=t.icsFilename||`ceg-converge-2026.ics`,l=t.shareUrl||window.location.href,u=t.shareText||`I am registered for ${r}! Please join me at: ${l}`,d=t.shareLabel||`Share with Other Alumni`,f=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(r)}&dates=${i}%2F${a}&details=${encodeURIComponent(s)}&location=${encodeURIComponent(o)}`,p=`https://api.whatsapp.com/send?text=${encodeURIComponent(u)}`,m=e=>String(e).replace(/'/g,`\\'`);n.innerHTML=`
