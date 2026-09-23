@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>CEGAANA Connect</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #d39a36;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .event-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .attendee-name {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .attendee-role {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .attendee-org {
+      font-size: 1.05rem;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .badge-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      background: rgba(2, 132, 199, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .id-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(211, 154, 54, 0.15);
+      border: 1px solid rgba(211, 154, 54, 0.3);
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+
+    .actions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 0.98rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      border: none;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+      filter: brightness(0.95);
+    }
+
+    .btn-secondary {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:active {
+      background: #334155;
+      transform: scale(0.98);
+    }
+
+    .btn-linkedin {
+      background: #0a66c2;
+      color: #ffffff;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #059669;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 12px;
+    }
+  </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DGHKYLW1CN');
+    </script>
+</head>
+<body>
+  <div class="container" id="app">
+    <header>
+      <div class="brand-title" id="orgName">CEGAANA Connect</div>
+      <div class="event-subtitle" id="eventName">Stateless Attendee Networking</div>
+    </header>
+
+    <div class="profile-card">
+      <h1 class="attendee-name" id="attendeeName">Attendee Profile</h1>
+      <div class="attendee-role" id="attendeeRole"></div>
+      <div class="attendee-org" id="attendeeOrg"></div>
+      
+      <div class="meta-row">
+        <span class="badge-pill" id="cohortPill" style="display: none;"></span>
+        <span class="id-pill" id="badgeIdPill"></span>
+      </div>
+    </div>
+
+    <div class="actions-list">
+      <button class="action-btn btn-primary" onclick="downloadVCard()">
+        📇 Save Contact (vCard)
+      </button>
+
+      <button class="action-btn btn-secondary" onclick="addToNotes()">
+        📝 Add to Notes
+      </button>
+
+      <button class="action-btn btn-secondary" onclick="addToCalendar()">
+        📅 Add to Calendar
+      </button>
+
+      <a class="action-btn btn-linkedin" id="linkedinBtn" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">
+        💼 View LinkedIn Profile
+      </a>
+
+      <a class="action-btn btn-secondary" id="phoneBtn" href="#" style="display: none;">
+        📞 Call / Text
+      </a>
+
+      <a class="action-btn btn-secondary" id="emailBtn" href="#" style="display: none;">
+        ✉️ Send Email
+      </a>
+    </div>
+
+    <div class="footer-note">
+      🔒 Zero database storage. Decoded directly on your device.
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    let attendeeData = null;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    function base64UrlToBytes(base64url) {
+      let base64 = base64url.replace(/-/g, '+').replace(/_/g, '/');
+      while (base64.length % 4) {
+        base64 += '=';
+      }
+      const raw = atob(base64);
+      const bytes = new Uint8Array(raw.length);
+      for (let i = 0; i < raw.length; i++) {
+        bytes[i] = raw.charCodeAt(i);
+      }
+      return bytes;
+    }
+
+    async function decompressDeflate(bytes) {
+      // Use standard browser DecompressionStream if available
+      if (typeof DecompressionStream !== 'undefined') {
+        try {
+          const ds = new DecompressionStream('deflate');
+          const writer = ds.writable.getWriter();
+          writer.write(bytes);
+          writer.close();
+          const response = new Response(ds.readable);
+          const text = await response.text();
+          return JSON.parse(text);
+        } catch {
+          // Fallback to raw deflate-raw if deflate fails
+          const dsRaw = new DecompressionStream('deflate-raw');
+          const writerRaw = dsRaw.writable.getWriter();
+          writerRaw.write(bytes);
+          writerRaw.close();
+          const responseRaw = new Response(dsRaw.readable);
+          const textRaw = await responseRaw.text();
+          return JSON.parse(textRaw);
+        }
+      }
+      throw new Error("DecompressionStream is not supported in this browser.");
+    }
+
+    async function loadFromHash() {
+      const hash = window.location.hash;
+      if (!hash.includes('#data=')) {
+        document.getElementById('attendeeName').textContent = "Scan a Badge QR Code";
+        document.getElementById('attendeeRole').textContent = "No attendee payload found in URL hash.";
+        return;
+      }
+
+      const encoded = hash.split('#data=')[1].split('&')[0];
+      try {
+        const bytes = base64UrlToBytes(encoded);
+        attendeeData = await decompressDeflate(bytes);
+        renderProfile(attendeeData);
+      } catch (err) {
+        console.error("Decoding error:", err);
+        document.getElementById('attendeeName').textContent = "Decoding Error";
+        document.getElementById('attendeeRole').textContent = "Could not decode attendee payload from QR.";
+      }
+    }
+
+    function formatBadgeId(rawId) {
+      if (rawId && rawId.length === 8 && !rawId.includes('-')) {
+        return rawId.slice(0, 4) + '-' + rawId.slice(4);
+      }
+      return rawId || '';
+    }
+
+    function renderProfile(data) {
+      document.getElementById('attendeeName').textContent = data.fn || "Attendee";
+      document.getElementById('attendeeRole').textContent = data.title || "";
+      document.getElementById('attendeeOrg').textContent = data.org || "";
+      if (data.ev) document.getElementById('eventName').textContent = data.ev;
+
+      if (data.yr) {
+        const cohortPill = document.getElementById('cohortPill');
+        cohortPill.textContent = "Class of " + data.yr;
+        cohortPill.style.display = "inline-block";
+      }
+
+      const idPill = document.getElementById('badgeIdPill');
+      idPill.textContent = "ID: " + formatBadgeId(data.id);
+
+      if (data.li) {
+        const liBtn = document.getElementById('linkedinBtn');
+        const url = data.li.startsWith('http') ? data.li : 'https://linkedin.com/in/' + data.li;
+        liBtn.href = url;
+        liBtn.style.display = "flex";
+      }
+
+      if (data.ph) {
+        const phBtn = document.getElementById('phoneBtn');
+        phBtn.href = 'tel:' + data.ph;
+        phBtn.style.display = "flex";
+      }
+
+      if (data.em) {
+        const emBtn = document.getElementById('emailBtn');
+        emBtn.href = 'mailto:' + data.em;
+        emBtn.style.display = "flex";
+      }
+    }
+
+    function downloadVCard() {
+      if (!attendeeData) return;
+      const d = attendeeData;
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        `FN:${d.fn}`,
+        d.org ? `ORG:${d.org}` : "",
+        d.title ? `TITLE:${d.title}` : "",
+        d.ph ? `TEL;TYPE=CELL,VOICE:${d.ph}` : "",
+        d.em ? `EMAIL;TYPE=INTERNET:${d.em}` : "",
+        d.li ? `X-SOCIALPROFILE;TYPE=linkedin:${d.li.startsWith('http') ? d.li : 'https://linkedin.com/in/' + d.li}` : "",
+        `NOTE:Met at ${d.ev} (Badge ID: ${formatBadgeId(d.id)})`,
+        "END:VCARD"
+      ].filter(Boolean).join("\r\n") + "\r\n";
+
+      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${d.fn.replace(/[^a-zA-Z0-9]/g, '_')}.vcf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast("Contact card downloaded!");
+    }
+
+    async function addToNotes() {
+      if (!attendeeData) return;
+      const d = attendeeData;
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const notes = [
+        `# Meeting Notes: ${d.fn}`,
+        `- Event: ${d.ev}`,
+        `- Date: ${dateStr}`,
+        `- Badge ID: ${formatBadgeId(d.id)}`,
+        d.org ? `- Organization: ${d.org}` : "",
+        d.title ? `- Role: ${d.title}` : "",
+        d.em ? `- Email: ${d.em}` : "",
+        d.ph ? `- Phone: ${d.ph}` : "",
+        d.li ? `- LinkedIn: https://linkedin.com/in/${d.li}` : "",
+        "",
+        "## Discussion Points & Action Items:",
+        "- "
+      ].filter(Boolean).join("\n");
+
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: `Meeting Notes: ${d.fn}`,
+            text: notes
+          });
+          showToast("Shared to Notes!");
+          return;
+        } catch {
+          // Fallback to clipboard
+        }
+      }
+
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(notes);
+        showToast("Notes copied to clipboard!");
+      }
+    }
+
+    function addToCalendar() {
+      if (!attendeeData) return;
+      const d = attendeeData;
+      const dt = new Date();
+      dt.setDate(dt.getDate() + 1);
+      if (dt.getDay() === 6) dt.setDate(dt.getDate() + 2);
+      if (dt.getDay() === 0) dt.setDate(dt.getDate() + 1);
+      dt.setHours(10, 0, 0, 0);
+
+      const startICS = dt.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+      const endICS = new Date(dt.getTime() + 30 * 60 * 1000).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+      const summary = `Follow up: ${d.fn} (${d.ev})`;
+      const desc = `Follow-up conversation with ${d.fn} (Badge ID: ${formatBadgeId(d.id)})\\nOrg: ${d.org || ''}\\nEmail: ${d.em || ''}`;
+
+      const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//CEGAANA//Simple Badges//EN",
+        "BEGIN:VEVENT",
+        `UID:followup-${d.id}-${Date.now()}@cegaana.org`,
+        `DTSTART:${startICS}`,
+        `DTEND:${endICS}`,
+        `SUMMARY:${summary}`,
+        `DESCRIPTION:${desc}`,
+        "END:VEVENT",
+        "END:VCALENDAR"
+      ].join("\r\n");
+
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `followup_${d.fn.replace(/[^a-zA-Z0-9]/g, '_')}.ics`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast("Calendar reminder downloaded!");
+    }
+
+    window.downloadVCard = downloadVCard;
+    window.addToNotes = addToNotes;
+    window.addToCalendar = addToCalendar;
+
+    window.addEventListener('hashchange', loadFromHash);
+    window.addEventListener('DOMContentLoaded', loadFromHash);
+  </script>
+</body>
+</html>

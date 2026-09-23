@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Attendee Verification — Staff Desk</title>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --green: #10b981;
+      --green-bg: rgba(16, 185, 129, 0.15);
+      --amber: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Stats Bar */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: #090e17;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .checkin-badge {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 10px;
+      border-radius: 9999px;
+      color: #38bdf8;
+    }
+
+    /* Main Stage */
+    .main-stage {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .view-panel {
+      width: 100%;
+      max-width: 440px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .view-panel.active {
+      display: flex;
+    }
+
+    /* Continuous Scan Viewfinder */
+    .scanner-box {
+      width: 100%;
+      aspect-ratio: 1;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .scanner-overlay {
+      position: absolute;
+      inset: 15%;
+      border: 2px dashed rgba(56, 189, 248, 0.7);
+      border-radius: 12px;
+      pointer-events: none;
+    }
+
+    /* Verified Alert Box */
+    .verified-banner {
+      display: none;
+      width: 100%;
+      background: var(--green-bg);
+      border: 2px solid var(--green);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 16px;
+      text-align: center;
+      animation: popIn 0.25s ease-out;
+    }
+
+    .verified-banner.show {
+      display: block;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .verified-status {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+
+    .verified-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-top: 4px;
+    }
+
+    .verified-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Manual Keypad */
+    .id-display-input {
+      width: 100%;
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-align: center;
+      color: #fff;
+      padding: 14px 12px;
+      margin-bottom: 20px;
+    }
+
+    .keypad-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .keypad-btn {
+      aspect-ratio: 1.4;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1.6rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.1s;
+    }
+    .keypad-btn:active {
+      background: #334155;
+    }
+
+    /* Search View */
+    .search-inputs {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    input.search-field {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+    }
+    input.search-field:focus {
+      border-color: var(--primary);
+    }
+
+    .roster-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .roster-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .roster-row:active {
+      background: #334155;
+    }
+
+    .roster-name {
+      font-weight: 600;
+      color: #fff;
+    }
+    .roster-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #090e17;
+      border-top: 1px solid var(--border);
+      padding: 8px 12px;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 8px;
+    }
+
+    .nav-btn.active {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+    }
+  </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DGHKYLW1CN');
+    </script>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="app-title">Staff Verification Desk</div>
+    <div class="checkin-badge" id="statsCount">0 / 0</div>
+  </div>
+
+  <div class="main-stage">
+    <!-- Mode 1: Continuous Camera Scan -->
+    <div class="view-panel active" id="scanPanel">
+      <div class="scanner-box">
+        <video id="cameraVideo" playsinline autoplay muted></video>
+        <div class="scanner-overlay"></div>
+      </div>
+
+      <div class="verified-banner" id="scanVerifiedBanner">
+        <div class="verified-status">✓ VERIFIED</div>
+        <div class="verified-name" id="verifiedName">Jane Doe</div>
+        <div class="verified-meta" id="verifiedMeta">Acme Systems • Class of 2015</div>
+      </div>
+    </div>
+
+    <!-- Mode 2: Manual 8-Digit Keypad -->
+    <div class="view-panel" id="idPanel">
+      <div class="id-display-input" id="keypadDisplay">--------</div>
+
+      <div class="keypad-grid">
+        <button class="keypad-btn" onclick="pressDigit('1')">1</button>
+        <button class="keypad-btn" onclick="pressDigit('2')">2</button>
+        <button class="keypad-btn" onclick="pressDigit('3')">3</button>
+        <button class="keypad-btn" onclick="pressDigit('4')">4</button>
+        <button class="keypad-btn" onclick="pressDigit('5')">5</button>
+        <button class="keypad-btn" onclick="pressDigit('6')">6</button>
+        <button class="keypad-btn" onclick="pressDigit('7')">7</button>
+        <button class="keypad-btn" onclick="pressDigit('8')">8</button>
+        <button class="keypad-btn" onclick="pressDigit('9')">9</button>
+        <button class="keypad-btn" style="color: #f43f5e;" onclick="clearKeypad()">C</button>
+        <button class="keypad-btn" onclick="pressDigit('0')">0</button>
+        <button class="keypad-btn" onclick="backspaceKeypad()">⌫</button>
+      </div>
+
+      <div class="verified-banner" id="idVerifiedBanner">
+        <div class="verified-status">✓ MATCH FOUND</div>
+        <div class="verified-name" id="idMatchName"></div>
+        <div class="verified-meta" id="idMatchMeta"></div>
+        <button class="keypad-btn" style="width: 100%; aspect-ratio: auto; padding: 12px; margin-top: 12px; background: #059669; font-size: 1rem;" onclick="confirmCheckIn()">Confirm Check-In</button>
+      </div>
+    </div>
+
+    <!-- Mode 3: Roster Search -->
+    <div class="view-panel" id="searchPanel">
+      <div class="search-inputs">
+        <input type="text" class="search-field" id="searchName" placeholder="First or Last Name..." oninput="filterRoster()" />
+        <input type="text" class="search-field" id="searchCohort" placeholder="Cohort / Year (e.g. 2015)..." oninput="filterRoster()" />
+      </div>
+
+      <div class="roster-list" id="rosterList">
+        <!-- Rendered matches -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <button class="nav-btn active" id="btnScan" onclick="switchNav('scan')">
+      <span>📷</span>
+      <span>QR Scan</span>
+    </button>
+    <button class="nav-btn" id="btnId" onclick="switchNav('id')">
+      <span>🔢</span>
+      <span>8-Digit ID</span>
+    </button>
+    <button class="nav-btn" id="btnSearch" onclick="switchNav('search')">
+      <span>🔍</span>
+      <span>Roster Search</span>
+    </button>
+  </div>
+
+  <script>
+    // Offline roster database (in-memory)
+    let roster = [];
+    const checkIns = new Set();
+    let currentDigits = "";
+    let matchedRecord = null;
+    let cameraStream = null;
+
+    function updateStats() {
+      document.getElementById('statsCount').textContent = `${checkIns.size} / ${roster.length}`;
+    }
+
+    function switchNav(mode) {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+
+      if (mode === 'scan') {
+        document.getElementById('btnScan').classList.add('active');
+        document.getElementById('scanPanel').classList.add('active');
+        startCamera();
+      } else if (mode === 'id') {
+        document.getElementById('btnId').classList.add('active');
+        document.getElementById('idPanel').classList.add('active');
+        stopCamera();
+      } else if (mode === 'search') {
+        document.getElementById('btnSearch').classList.add('active');
+        document.getElementById('searchPanel').classList.add('active');
+        stopCamera();
+        filterRoster();
+      }
+    }
+
+    async function startCamera() {
+      if (cameraStream) return;
+      try {
+        cameraStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: 'environment' }
+        });
+        document.getElementById('cameraVideo').srcObject = cameraStream;
+      } catch (err) {
+        console.warn("Camera access unavailable or denied:", err);
+      }
+    }
+
+    function stopCamera() {
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(t => t.stop());
+        cameraStream = null;
+      }
+    }
+
+    function pressDigit(d) {
+      if (currentDigits.length < 8) {
+        currentDigits += d;
+        updateKeypadDisplay();
+        if (currentDigits.length === 8) {
+          lookupDigits();
+        }
+      }
+    }
+
+    function backspaceKeypad() {
+      currentDigits = currentDigits.slice(0, -1);
+      updateKeypadDisplay();
+      document.getElementById('idVerifiedBanner').classList.remove('show');
+    }
+
+    function clearKeypad() {
+      currentDigits = "";
+      updateKeypadDisplay();
+      document.getElementById('idVerifiedBanner').classList.remove('show');
+    }
+
+    function updateKeypadDisplay() {
+      const padded = currentDigits.padEnd(8, '-');
+      const formatted = `${padded.slice(0, 4)} - ${padded.slice(4)}`;
+      document.getElementById('keypadDisplay').textContent = formatted;
+    }
+
+    function lookupDigits() {
+      const match = roster.find(r => r.id === currentDigits);
+      if (match) {
+        matchedRecord = match;
+        document.getElementById('idMatchName').textContent = match.name;
+        document.getElementById('idMatchMeta').textContent = `${match.org || ''} • Class of ${match.yr || ''}`;
+        document.getElementById('idVerifiedBanner').classList.add('show');
+        if (navigator.vibrate) navigator.vibrate(50);
+      } else {
+        alert("No attendee found matching ID: " + currentDigits);
+      }
+    }
+
+    function confirmCheckIn() {
+      if (matchedRecord) {
+        checkIns.add(matchedRecord.id);
+        updateStats();
+        alert(`Checked in: ${matchedRecord.name}`);
+        clearKeypad();
+      }
+    }
+
+    function filterRoster() {
+      const qName = document.getElementById('searchName').value.trim().toLowerCase();
+      const qCohort = document.getElementById('searchCohort').value.trim().toLowerCase();
+
+      const filtered = roster.filter(r => {
+        const matchesName = !qName || r.name.toLowerCase().includes(qName);
+        const matchesCohort = !qCohort || (r.yr && r.yr.toLowerCase().includes(qCohort));
+        return matchesName && matchesCohort;
+      });
+
+      const listEl = document.getElementById('rosterList');
+      listEl.innerHTML = '';
+
+      filtered.slice(0, 50).forEach(r => {
+        const isChecked = checkIns.has(r.id);
+        const item = document.createElement('div');
+        item.className = 'roster-row';
+        item.innerHTML = `
+          <div>
+            <div class="roster-name">${r.name}</div>
+            <div class="roster-sub">${r.id} • ${r.org || 'General'} ${r.yr ? '(' + r.yr + ')' : ''}</div>
+          </div>
+          <div>
+            ${isChecked ? '<span style="color: #10b981; font-weight: 700;">✓ Checked In</span>' : '<button style="background: #0284c7; border:none; color:white; padding:6px 12px; border-radius:6px; font-weight:600;">Check In</button>'}
+          </div>
+        `;
+        item.onclick = () => {
+          checkIns.add(r.id);
+          updateStats();
+          filterRoster();
+        };
+        listEl.appendChild(item);
+      });
+    }
+
+    // Seed sample test roster for instant verification testing
+    roster = [
+      { id: "20150427", name: "Jane Doe", org: "Acme Systems", role: "Principal Architect", yr: "2015" },
+      { id: "20180102", name: "John Smith", org: "Global Tech Labs", role: "VP Engineering", yr: "2018" },
+      { id: "20200842", name: "Alice Johnson", org: "Apex Innovations", role: "Product Lead", yr: "2020" },
+      { id: "99990103", name: "Bob Williams", org: "Venture Partners", role: "Sponsor Representative", yr: "" }
+    ];
+
+    window.switchNav = switchNav;
+    window.pressDigit = pressDigit;
+    window.backspaceKeypad = backspaceKeypad;
+    window.clearKeypad = clearKeypad;
+    window.confirmCheckIn = confirmCheckIn;
+    window.filterRoster = filterRoster;
+
+    updateStats();
+    startCamera();
+  </script>
+</body>
+</html>
