@@ -12,27 +12,35 @@ DESCRIPTION:${u.replace(/,/g,`\\,`)}
 URL:${window.location.href}
 STATUS:CONFIRMED
 END:VEVENT
-END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.createElement(`a`);m.href=window.URL.createObjectURL(p),m.setAttribute(`download`,d),document.body.appendChild(m),m.click(),document.body.removeChild(m)}async function t(e,t,r){let i=e||`CEG Converge 2026: Leaders Forum`,a=r||`https://cegaana.org/converge/2026/lf`,o=t||`I am registered for CEG Converge 2026: Leaders Forum on Sept 26, 2026! Please join me at: ${a}`;if(navigator.share)try{await navigator.share({title:i,text:o,url:a}),n(o)}catch(e){console.log(`Native share canceled or unhandled, executing clipboard fallback:`,e),n(o)}else n(o)}function n(e,t=`toastMsg`){let n=e||`I am registered for CEG Converge 2026: Leaders Forum on Sept 26, 2026! Please join me at: https://cegaana.org/converge/2026/lf`;navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(n).then(()=>{i(t)}).catch(()=>{r(n,t)}):r(n,t)}function r(e,t=`toastMsg`){try{let n=document.createElement(`textarea`);n.value=e,n.style.position=`fixed`,n.style.left=`-9999px`,n.style.top=`-9999px`,document.body.appendChild(n),n.focus(),n.select();let r=document.execCommand(`copy`);document.body.removeChild(n),r?i(t):prompt(`Copy this share text:`,e)}catch(t){console.error(`Failed to copy to clipboard:`,t),prompt(`Copy this share text:`,e)}}function i(e=`toastMsg`){let t=document.getElementById(e);t&&(t.style.display=`inline-block`,setTimeout(()=>{t.style.display=`none`},3e3))}function a(e,t=new Date){let n=e.expires_on||e.conference_date;if(!n)return!1;let r=new Date(`${n}T23:59:59-07:00`);if(isNaN(r.getTime())){let e=n.split(`-`);if(e.length===3){let n=parseInt(e[0],10),r=parseInt(e[1],10)-1,i=parseInt(e[2],10),a=new Date(Date.UTC(n,r,i,30,59,59));return t.getTime()>a.getTime()}return!1}return t.getTime()>r.getTime()}function o(e,t){let n=typeof e==`string`?document.getElementById(e):e;if(!n||!Array.isArray(t))return;let r=t.filter(e=>!a(e));if(r.length===0){n.innerHTML=`
+END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.createElement(`a`);m.href=window.URL.createObjectURL(p),m.setAttribute(`download`,d),document.body.appendChild(m),m.click(),document.body.removeChild(m)}async function t(e,t,r){let i=e||`CEG Converge 2026: Leaders Forum`,a=r||`https://cegaana.org/converge/2026/lf`,o=t||`I am registered for CEG Converge 2026: Leaders Forum on Sept 26, 2026! Please join me at: ${a}`;if(navigator.share)try{await navigator.share({title:i,text:o,url:a}),n(o)}catch(e){console.log(`Native share canceled or unhandled, executing clipboard fallback:`,e),n(o)}else n(o)}function n(e,t=`toastMsg`){let n=e||`I am registered for CEG Converge 2026: Leaders Forum on Sept 26, 2026! Please join me at: https://cegaana.org/converge/2026/lf`;navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(n).then(()=>{i(t)}).catch(()=>{r(n,t)}):r(n,t)}function r(e,t=`toastMsg`){try{let n=document.createElement(`textarea`);n.value=e,n.style.position=`fixed`,n.style.left=`-9999px`,n.style.top=`-9999px`,document.body.appendChild(n),n.focus(),n.select();let r=document.execCommand(`copy`);document.body.removeChild(n),r?i(t):prompt(`Copy this share text:`,e)}catch(t){console.error(`Failed to copy to clipboard:`,t),prompt(`Copy this share text:`,e)}}function i(e=`toastMsg`){let t=document.getElementById(e);t&&(t.style.display=`inline-block`,setTimeout(()=>{t.style.display=`none`},3e3))}function a(e,t=new Date,n=!1){let r=e.expires_on||e.conference_date;if(n&&e.allow_special_access&&e.extended_expires_on&&(r=e.extended_expires_on),!r)return!1;let i=new Date(`${r}T23:59:59-07:00`);if(isNaN(i.getTime())){let e=r.split(`-`);if(e.length===3){let n=parseInt(e[0],10),r=parseInt(e[1],10)-1,i=parseInt(e[2],10),a=new Date(Date.UTC(n,r,i,30,59,59));return t.getTime()>a.getTime()}return!1}return t.getTime()>i.getTime()}function o(e,t,n={}){let r=typeof e==`string`?document.getElementById(e):e;if(!r||!Array.isArray(t))return;let i=n.hasSpecialAccess;if(typeof i!=`boolean`&&typeof window<`u`&&window.location){let e=new URLSearchParams(window.location.search);i=e.get(`access`)===`invite`||e.get(`access`)===`special`||e.get(`invite`)===`true`||e.get(`invite`)===`vip`||e.get(`code`)===`lastminute`||e.get(`special`)===`1`||e.has(`invite`)}let o=n.now||new Date,s=t.filter(e=>!a(e,o,i));if(s.length===0){r.innerHTML=`
             <div class="registration-closed-box" style="text-align: center; padding: 2rem 1rem; background: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 12px; color: #9B2C2C;">
                 <h3 style="font-family: 'Outfit', sans-serif; margin-bottom: 0.5rem; font-size: 1.2rem;">Registration Closed</h3>
                 <p style="font-size: 0.92rem; margin: 0; color: #742A2A;">Online registration for CEG Converge 2026 is currently closed.</p>
             </div>
-        `;return}let i=`<p class="catalog-intro-text" style="font-size: 0.9rem; color: var(--converge-text-muted); margin-bottom: 1rem;">${r.length===1?`Includes networking lunch & full conference access.`:`Select your preferred registration tier below. <br />Includes networking lunch & full conference access.`}</p>`,o=new Map;r.forEach(e=>{let t=e.group_key||(e.tier_id.includes(`single`)?`single`:e.tier_id.includes(`double`)?`double`:`student`);o.has(t)||o.set(t,{key:t,title:e.group_title||(t===`single`?`Single Ticket`:t===`double`?`Double Tickets`:`Student & Recent Grad Pass`),icon:e.group_icon||(t===`single`?`👤`:t===`double`?`👥`:`🎓`),badge:e.group_badge||e.num_tickets||``,description:e.group_description||e.description||``,items:[]}),o.get(t).items.push(e)});let s=Array.from(o.values()).map(e=>(e.items.sort(e=>e.is_early_bird||e.tier_id.includes(`early_bird`)?-1:1),e)),c=e=>{let t=!!(e.is_early_bird||e.tier_id.includes(`early_bird`)),n=e.option_label||(t?`⚡ Early Bird Special`:`Regular Registration`),r=e.savings_badge||(t?e.tier_id.includes(`double`)?`Save $20`:`Save $15`:``);return`
-        <div class="option-row ${t?`option-early-bird`:`option-regular`}">
+        `;return}let c=(i&&s.some(e=>e.allow_special_access)?`
+        <div class="special-access-banner">
+            <div class="special-access-icon">⭐</div>
+            <div class="special-access-content">
+                <strong>Special Invitation Access:</strong>
+                Registration has been reopened for invited attendees. This last-minute link remains active through Sep 25.
+            </div>
+        </div>
+    `:``)+`<p class="catalog-intro-text" style="font-size: 0.9rem; color: var(--converge-text-muted); margin-bottom: 1rem;">${s.length===1?`Includes networking lunch & full conference access.`:`Select your preferred registration tier below. <br />Includes networking lunch & full conference access.`}</p>`,l=new Map;s.forEach(e=>{let t=e.group_key||(e.tier_id.includes(`single`)?`single`:e.tier_id.includes(`double`)?`double`:`student`),n=i&&e.allow_special_access?`⭐ Special Invitation`:e.group_badge||e.num_tickets||``;l.has(t)||l.set(t,{key:t,title:e.group_title||(t===`single`?`Single Ticket`:t===`double`?`Double Tickets`:`Student & Recent Grad Pass`),icon:e.group_icon||(t===`single`?`👤`:t===`double`?`👥`:`🎓`),badge:n,description:e.group_description||e.description||``,items:[]}),l.get(t).items.push(e)});let u=Array.from(l.values()).map(e=>(e.items.sort(e=>e.is_early_bird||e.tier_id.includes(`early_bird`)?-1:1),e)),d=e=>{let t=!!(i&&e.allow_special_access),n=!!(e.is_early_bird||e.tier_id.includes(`early_bird`)),r=t?`Special Registration (Invited)`:e.option_label||(n?`⚡ Early Bird Special`:`Regular Registration`),a=t?`⭐ Special Access`:e.savings_badge||(n?e.tier_id.includes(`double`)?`Save $20`:`Save $15`:``),o=t?`option-special`:n?`option-early-bird`:`option-regular`,s=t?`option-special-tag`:`option-savings-tag`,c=t?`btn-special`:n?`btn-eb`:`btn-reg`,l=t?`Register (Special Access) &rarr;`:`Register &rarr;`;return`
+        <div class="option-row ${o}">
             <div class="option-title-group">
-                <span class="option-label">${n}</span>
-                ${r?`
+                <span class="option-label">${r}</span>
+                ${a?`
                 <div class="option-badges">
-                    <span class="option-savings-tag">${r}</span>
+                    <span class="${s}">${a}</span>
                 </div>
                 `:``}
             </div>
             <div class="option-action-group">
                 <span class="option-price">${e.price}</span>
-                <a href="${e.stripe_link||`#`}" target="_blank" rel="noopener noreferrer" class="option-btn ${t?`btn-eb`:`btn-reg`}">Register &rarr;</a>
+                <a href="${e.stripe_link||`#`}" target="_blank" rel="noopener noreferrer" class="option-btn ${c}">${l}</a>
             </div>
         </div>
-        `};n.innerHTML=i+s.map(e=>`
+        `};r.innerHTML=c+u.map(e=>`
         <div class="type-card-block">
             <div class="type-card-header">
                 <div class="type-icon-badge">${e.icon}</div>
@@ -45,7 +53,7 @@ END:VCALENDAR`,p=new Blob([f],{type:`text/calendar;charset=utf-8`}),m=document.c
                 </div>
             </div>
             <div class="type-options-list">
-                ${e.items.map(c).join(``)}
+                ${e.items.map(d).join(``)}
             </div>
         </div>
     `).join(``)}function s(e,t){let n=typeof e==`string`?document.getElementById(e):e;if(!n||!t)return;let r=t.title||`CEG Converge 2026`,i=t.dtStart||`20260926T190000Z`,a=t.dtEnd||`20260927T010000Z`,o=t.location||`Computer History Museum, 1401 N Shoreline Blvd, Mountain View, CA 94043`,s=t.description||`CEGAANA ${r} at ${o}.`,c=t.icsFilename||`ceg-converge-2026.ics`,l=t.shareUrl||window.location.href,u=t.shareText||`I am registered for ${r}! Please join me at: ${l}`,d=t.shareLabel||`Share with Other Alumni`,f=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(r)}&dates=${i}%2F${a}&details=${encodeURIComponent(s)}&location=${encodeURIComponent(o)}`,p=`https://api.whatsapp.com/send?text=${encodeURIComponent(u)}`,m=e=>String(e).replace(/'/g,`\\'`);n.innerHTML=`
