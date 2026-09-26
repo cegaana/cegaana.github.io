@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Event Schedule | CEG Converge 2026 | CEGAANA</title>
+    <meta name="description"
+        content="Official conference schedule for CEG Converge 2026 North American Alumni Conference, plus ways to support CEGAANA scholarships and campus betterment.">
+
+    <!-- Open Graph / Social Media Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CEGAANA">
+    <meta property="og:title" content="Event Schedule | CEG Converge 2026">
+    <meta property="og:description"
+        content="Official conference schedule for CEG Converge 2026 at the Computer History Museum, Mountain View, CA.">
+    <meta property="og:image" content="https://cegaana.org/converge/2026/converge-2026-flyer.jpg">
+    <meta property="og:url" content="https://cegaana.org/converge/2026/schedule.jpg/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Event Schedule | CEG Converge 2026">
+    <meta name="twitter:description"
+        content="Official conference schedule for CEG Converge 2026 at the Computer History Museum, Mountain View, CA.">
+    <meta name="twitter:image" content="https://cegaana.org/converge/2026/converge-2026-flyer.jpg">
+
+    <link rel="icon" type="image/jpeg" href="/cegaana-square-logo.jpg">
+
+    <!-- Site CSS -->
+
+    <!-- Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-primary: #8b0414;
+            --brand-gold: #d39a36;
+            --brand-gold-light: #f6c058;
+            --dark-card: #18090d;
+        }
+
+        body {
+            background-color: #fcf9f6;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #222;
+            margin: 0;
+            padding: 0;
+        }
+
+        .schedule-hero {
+            background: linear-gradient(135deg, #1c080b 0%, #300c12 50%, #150608 100%);
+            color: #fff;
+            padding: 2.2rem 1.2rem 2.0rem;
+            text-align: center;
+            border-bottom: 2px solid rgba(211, 154, 54, 0.4);
+            position: relative;
+        }
+
+        .schedule-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 0.5rem;
+            letter-spacing: -0.01em;
+            background: linear-gradient(180deg, #ffe29a 0%, #d39a36 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .schedule-hero p {
+            font-size: 1.05rem;
+            color: #dcd0c7;
+            max-width: 600px;
+            margin: 0 auto 0.8rem;
+            line-height: 1.4;
+        }
+
+        .schedule-event-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(211, 154, 54, 0.16);
+            border: 1px solid rgba(211, 154, 54, 0.35);
+            color: var(--brand-gold-light);
+            padding: 4px 14px;
+            border-radius: 9999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .content-wrap {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        /* Giving Cards Grid */
+        .giving-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-giving {
+            border-radius: 14px;
+            padding: 1.6rem 1.4rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-giving:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.11);
+        }
+
+        .card-giving h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 0 0 0.6rem;
+            color: #111;
+        }
+
+        .card-giving p {
+            font-size: 0.92rem;
+            line-height: 1.45;
+            color: #444;
+            margin: 0 0 0.6rem;
+        }
+
+        .card-giving .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 11px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.15s ease;
+            margin-top: 0.8rem;
+        }
+
+        /* Schedule Container */
+        .schedule-display-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.10);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .schedule-header-row {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .schedule-header-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .schedule-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-view-orig {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            background: #f4efe9;
+            color: #443026;
+            border: 1px solid #e0d5c8;
+            border-radius: 8px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .btn-view-orig:hover {
+            background: #e8ded2;
+            color: #111;
+        }
+
+        .schedule-img-wrap {
+            width: 100%;
+            text-align: center;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #fdfaf6;
+            border: 1px solid #eee;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .schedule-img-wrap img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+        }
+
+        .schedule-caption {
+            font-size: 0.84rem;
+            color: #777;
+            text-align: center;
+            margin-top: 0.2rem;
+        }
+
+        /* Quick Navigation Footer */
+        .page-footer {
+            background: #150608;
+            color: #999;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            border-top: 1px solid #33151b;
+        }
+
+        .page-footer a {
+            color: var(--brand-gold-light);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .schedule-hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .schedule-display-card {
+                padding: 1rem;
+            }
+        }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/styles-Bvwj-AAy.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DGHKYLW1CN');
+    </script>
+</head>
+
+<body>
+    <!-- Top Brand Header -->
+    <header style="background: #120406; padding: 0.75rem 1rem; text-align: center; border-bottom: 1px solid #2d0d12;">
+        <a href="/" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none;">
+            <img src="/cegaana_logo.jpg" alt="CEGAANA Logo" style="height: 38px; border-radius: 6px;">
+            <span style="font-family: 'Outfit', sans-serif; font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: 0.04em;">CEGAANA</span>
+        </a>
+    </header>
+
+    <!-- Hero Title -->
+    <section class="schedule-hero">
+        <div class="schedule-event-badge">Saturday, September 26, 2026 &bull; Mountain View, CA</div>
+        <h1 style="margin-top: 0.6rem;">CEG Converge 2026 Schedule</h1>
+        <p>Computer History Museum &bull; North American Alumni Conference</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="content-wrap">
+
+        <!-- Donate and Pledge Cards -->
+        <div class="giving-cards-grid">
+            <!-- Donate Now -->
+            <div class="card-giving card-tint-5">
+                <div>
+                    <h4>Donate Now</h4>
+                    <p>Thanks for your support to Scholarships or CEG Betterment.</p>
+                    <p>Give securely. Your receipt is emailed instantly.</p>
+                </div>
+                <a href="https://donate.stripe.com/7sYfZ9bqs3vY53F3BO7N60d" class="btn" style="background-color: var(--primary-color, #8b0414); color: #fff;">Donate securely</a>
+            </div>
+
+            <!-- Pledge Now -->
+            <div class="card-giving card-tint-6">
+                <div>
+                    <h4>Make a Pledge</h4>
+                    <p>Commit now and pay later by check, DAF grant, or employer match.</p>
+                    <p>Great for batch gifts and if donating via Benevity with an employer match. We'll email you payment details.</p>
+                </div>
+                <a href="https://forms.gle/iyTi9WN9aBUjbrsW6" class="btn" style="background-color: #2b7431; color: #fff;">Fill out the pledge form</a>
+            </div>
+        </div>
+
+        <!-- Schedule Visual Card -->
+        <div class="schedule-display-card">
+            <div class="schedule-header-row">
+                <h2 class="schedule-header-title">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Program & Schedule
+                </h2>
+                <div class="schedule-actions">
+                    <a href="./schedule-image.jpg" target="_blank" rel="noopener noreferrer" class="btn-view-orig" download="ceg-converge-2026-schedule.jpg">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download Image
+                    </a>
+                    <a href="./schedule-image.jpg" target="_blank" rel="noopener noreferrer" class="btn-view-orig">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                        Full Screen
+                    </a>
+                </div>
+            </div>
+
+            <!-- Embedded Schedule Image -->
+            <div class="schedule-img-wrap">
+                <a href="./schedule-image.jpg" target="_blank" rel="noopener noreferrer" title="Click to view full size">
+                    <img src="/schedule-image.jpg" alt="CEG Converge 2026 Event Schedule">
+                </a>
+            </div>
+            <div class="schedule-caption">
+                Tip: Tap or click the schedule image above to zoom into high resolution.
+            </div>
+        </div>
+
+        <!-- Secondary Giving Reminder -->
+        <div style="text-align: center; margin-top: 0.5rem;">
+            <p style="color: #666; font-size: 0.95rem; margin-bottom: 0.8rem;">
+                Looking for the full conference portal or event details?
+            </p>
+            <a href="/converge/2026/" style="display: inline-block; color: var(--brand-primary); font-weight: 600; text-decoration: underline; margin-right: 1.5rem;">
+                &larr; Converge 2026 Event Overview
+            </a>
+            <a href="/connect/" style="display: inline-block; color: var(--brand-primary); font-weight: 600; text-decoration: underline;">
+                Attendee Connect App &rarr;
+            </a>
+        </div>
+
+    </div>
+
+    <footer class="page-footer">
+        <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA). All Rights Reserved.</p>
+        <p style="margin-top: 6px;"><a href="/">Home</a> &bull; <a href="/converge/2026/">Converge 2026</a> &bull; <a href="/connect/">Connect</a> &bull; <a href="https://donate.stripe.com/7sYfZ9bqs3vY53F3BO7N60d" target="_blank" rel="noopener noreferrer">Donate</a></p>
+    </footer>
+</body>
+
+</html>
