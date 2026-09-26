@@ -112,6 +112,10 @@
             ];
 
             const currentPath = window.location.pathname;
+            if (currentPath === '/converge' || currentPath === '/converge/') {
+                window.location.replace('/converge/2026/' + window.location.search + window.location.hash);
+                return;
+            }
             if (currentPath === '/converge/2026/schedule.jpg' || currentPath.endsWith('/converge/2026/schedule.jpg')) {
                 window.location.replace('/converge/2026/schedule.jpg/' + window.location.search + window.location.hash);
                 return;
