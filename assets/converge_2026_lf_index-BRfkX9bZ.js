@@ -1,0 +1,1 @@
+/* empty css               */import{t as e}from"./event-helpers-BO8AUp5s.js";/* empty css                 */async function t(){try{let t=await fetch(`./catalog.json`);if(t.ok){let n=await t.json(),r=new Date;if(n.filter(t=>!e(t,r)).length===0){let e=document.getElementById(`lfPaymentCard`);e&&e.remove()}}}catch(e){console.error(`Error checking LF catalog expiration:`,e)}}t();

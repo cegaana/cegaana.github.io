@@ -33,9 +33,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
         rel="stylesheet">
-  <script type="module" crossorigin src="/assets/event-helpers-BYzUaSz3.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/event-helpers-CWbtkvHz.css">
-  <link rel="stylesheet" crossorigin href="/assets/styles-GZVIp1dF.css">
+  <script type="module" crossorigin src="/assets/converge_2026_lf_index-BRfkX9bZ.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/event-helpers-BO8AUp5s.js">
+  <link rel="stylesheet" crossorigin href="/assets/converge-BgSF1mTX.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-DMgwEEcp.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
     <script>
@@ -132,32 +133,6 @@
                 </p>
             </div>
 
-            <!-- Card 4: Leaders Forum Registration & Payment -->
-            <div class="card payment-card">
-                <div class="card-header" style="justify-content: center; margin-bottom: 0.5rem;">
-                    <h2 class="card-title" style="color: var(--converge-primary);">Leaders Forum Registration</h2>
-                </div>
-
-                <!-- Direct Stripe Buy Button Embed -->
-                <div class="stripe-buy-wrapper">
-                    <script async src="https://js.stripe.com/v3/buy-button.js">
-                    </script>
-                    <stripe-buy-button buy-button-id="buy_btn_1TxsAa0p6RBcR273ReuZmdlj"
-                        publishable-key="pk_live_51SsSh00p6RBcR273xCnoGe111LbS0BGgNUjzDwuK7fmmd9qukvw9XTfP8uyB10q1DssUdp8zIwKHL9fv3BfQbXtP00ymrJsiOv">
-                    </stripe-buy-button>
-                </div>
-
-                <div style="font-size: 0.84rem; color: #2d480f; margin-top: 4px; font-weight: 500;">
-                    Includes Breakfast, Networking Lunch & Full Day Conference
-                </div>
-
-                <div class="tax-note">
-                    <strong>501(c)(3) Non-Profit Tax Deduction:</strong><br>
-                    CEGAANA is a registered 501(c)(3) non-profit organization. Donations fund student scholarships
-                    and campus development. Contributions are tax-deductible to the extent allowed by law.
-                </div>
-            </div>
-
             <!-- Card 2: Schedule & Venue -->
             <div class="card">
                 <div class="card-header">
@@ -204,6 +179,75 @@
             </div>
 
         </div>
+
+        <!-- Right Column: Actions (Feedback, Donate, Pledge) & Registration -->
+        <div class="content-right-column">
+
+            <!-- Giving & Action Cards (Feedback, Donate, Pledge) -->
+            <div class="giving-cards-grid">
+                <!-- Share Feedback -->
+                <div class="card-giving card-tint-7">
+                    <div>
+                        <h4>Share Your Feedback</h4>
+                        <p>Help us learn and build an even better Converge.</p>
+                        <p>Take 60 seconds to share your impressions and suggestions.</p>
+                    </div>
+                    <a href="https://forms.gle/mS4FAjrm1h3Tbzaa9" target="_blank" rel="noopener noreferrer" class="btn btn-feedback"
+                        style="background-color: #86198f; color: #fff;">Share 60-Sec Feedback &rarr;</a>
+                </div>
+
+                <!-- Donate Now -->
+                <div class="card-giving card-tint-5">
+                    <div>
+                        <h4>Donate Now</h4>
+                        <p>Thanks for your support to Scholarships or CEG Betterment.</p>
+                        <p>Give securely. Your receipt is emailed instantly.</p>
+                    </div>
+                    <a href="https://donate.stripe.com/7sYfZ9bqs3vY53F3BO7N60d" class="btn btn-donate"
+                        style="background-color: var(--primary-color, #8b0414); color: #fff;">Donate Now</a>
+                </div>
+
+                <!-- Pledge Now -->
+                <div class="card-giving card-tint-6">
+                    <div>
+                        <h4>Make a Pledge</h4>
+                        <p>Commit now and pay later by check, DAF grant, or employer match.</p>
+                        <p>Great for batch gifts and if donating via Benevity with an employer match.</p>
+                    </div>
+                    <a href="https://forms.gle/iyTi9WN9aBUjbrsW6" class="btn btn-pledge"
+                        style="background-color: #2b7431; color: #fff;">Fill out the pledge form</a>
+                </div>
+            </div>
+
+            <!-- Card 4: Leaders Forum Registration & Payment -->
+            <div id="lfPaymentCard" class="card payment-card">
+                <div class="card-header" style="justify-content: center; margin-bottom: 0.5rem;">
+                    <h2 class="card-title" style="color: var(--converge-primary);">Leaders Forum Registration</h2>
+                </div>
+
+                <!-- Direct Stripe Buy Button Embed -->
+                <div class="stripe-buy-wrapper">
+                    <script async src="https://js.stripe.com/v3/buy-button.js">
+                    </script>
+                    <stripe-buy-button buy-button-id="buy_btn_1TxsAa0p6RBcR273ReuZmdlj"
+                        publishable-key="pk_live_51SsSh00p6RBcR273xCnoGe111LbS0BGgNUjzDwuK7fmmd9qukvw9XTfP8uyB10q1DssUdp8zIwKHL9fv3BfQbXtP00ymrJsiOv">
+                    </stripe-buy-button>
+                </div>
+
+                <div style="font-size: 0.84rem; color: #2d480f; margin-top: 4px; font-weight: 500;">
+                    Includes Breakfast, Networking Lunch & Full Day Conference
+                </div>
+
+                <div class="tax-note">
+                    <strong>501(c)(3) Non-Profit Tax Deduction:</strong><br>
+                    CEGAANA is a registered 501(c)(3) non-profit organization. Donations fund student scholarships
+                    and campus development. Contributions are tax-deductible to the extent allowed by law.
+                </div>
+            </div>
+
+        </div>
+
+        </div>
     </div>
 
     <!-- Footer -->
@@ -213,7 +257,9 @@
             <div>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA)</div>
             <div>Questions? Contact us at <a href="mailto:info@cegaana.org">info@cegaana.org</a></div>
         </div>
-    <!-- Shared Event Helper Scripts -->
+    </footer>
+
+    <!-- Shared Event Helper Scripts & Expiration Logic -->
 
 </body>
 

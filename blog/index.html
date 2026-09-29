@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEGAANA Blog & Announcements | Stories & Updates</title>
+    <meta name="description"
+        content="Read official announcements, community stories, and conference recaps from the College of Engineering, Guindy Alumni Association of North America (CEGAANA).">
+    <link rel="canonical" href="https://cegaana.org/blog/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="CEGAANA Blog & Announcements">
+    <meta property="og:description"
+        content="Stories, community updates, conference recaps, and board elections news from CEGAANA.">
+    <meta property="og:image" content="https://cegaana.org/cegaana_logo.jpg">
+    <meta property="og:url" content="https://cegaana.org/blog/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CEGAANA Blog & Announcements">
+    <meta name="twitter:description" content="Official stories and announcements from CEGAANA.">
+    <meta name="twitter:image" content="https://cegaana.org/cegaana_logo.jpg">
+
+    <!-- Site CSS -->
+
+    <!-- Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        .blog-hub-container {
+            max-width: 1040px;
+            margin: 2rem auto 4rem;
+            padding: 0 1.5rem;
+        }
+
+        .hub-hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #0a263d 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 16px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .hub-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 4.5vw, 2.8rem);
+            font-weight: 800;
+            margin: 0 0 10px;
+            color: #ffffff;
+        }
+
+        .hub-subtitle {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .post-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.75rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-badge {
+            display: inline-block;
+            align-self: flex-start;
+            background: #fdf4ff;
+            color: #86198f;
+            border: 1px solid #f0abfc;
+            padding: 3px 10px;
+            border-radius: 16px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .post-badge.recap {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border-color: #bfdbfe;
+        }
+
+        .post-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 0.5rem;
+            line-height: 1.3;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.85rem;
+            font-weight: 500;
+        }
+
+        .post-desc {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .post-cta {
+            align-self: flex-start;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.95rem;
+            transition: gap 0.15s ease;
+        }
+
+        .post-card:hover .post-cta {
+            gap: 8px;
+            color: #86198f;
+        }
+    </style>
+  <link rel="stylesheet" crossorigin href="/assets/styles-DMgwEEcp.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DGHKYLW1CN');
+    </script>
+</head>
+
+<body>
+
+    <!-- Header Navigation -->
+    <header class="lf-header">
+        <div class="lf-nav-container">
+            <a href="../index.html" class="lf-brand-logo">
+                <img src="/cegaana_logo.jpg" alt="CEGAANA Logo">
+                <span>CEGAANA</span>
+            </a>
+            <ul class="lf-nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../events/">Events</a></li>
+                <li><a href="../join/">Join Us</a></li>
+                <li><a href="../contribute/">Contribute</a></li>
+                <li><a href="./index.html" style="font-weight: 700;">Blog</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="blog-hub-container">
+
+        <!-- Hub Hero Banner -->
+        <div class="hub-hero">
+            <h1 class="hub-title">Blog & Announcements</h1>
+            <p class="hub-subtitle">Official news, community stories, conference recaps, and governance announcements from CEGAANA.</p>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="posts-grid">
+
+            <!-- Card 1: 2026 Elections Announcement -->
+            <article class="post-card">
+                <div>
+                    <span class="post-badge">🗳️ Governance</span>
+                    <h2 class="post-title">
+                        <a href="./2026-elections/" style="color: inherit; text-decoration: none;">CEGAANA 2026 Board Elections: Announcement & Call for Nominations</a>
+                    </h2>
+                    <div class="post-meta">September 17, 2026 &bull; CEGAANA Board</div>
+                    <p class="post-desc">
+                        The CEGAANA Board announces elections for 6 open seats for the 2026–2029 term. Review candidate qualifications, voting eligibility, timeline, and self-nomination details.
+                    </p>
+                </div>
+                <a href="./2026-elections/" class="post-cta">Read Announcement &rarr;</a>
+            </article>
+
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="lf-footer">
+        <div style="max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+            <div>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA)</div>
+            <div>Questions? Contact us at <a href="mailto:info@cegaana.org">info@cegaana.org</a></div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
