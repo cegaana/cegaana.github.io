@@ -1,5 +1,38 @@
 [
   {
+    "id": 9,
+    "slug": "health-panel-love-your-heart",
+    "title": "Health Panel: Love your Heart",
+    "category": "panel",
+    "date": "2026-10-30T14:00:00-07:00",
+    "timeLabel": "2:00 PM - 3:00 PM PST",
+    "location": "Zoom Meeting",
+    "description": "Heart health is vital for everyone, regardless of age or gender. Join this talk and panel discussion to learn more. Ashish Mathur & Anita Sathe from the South Asian Heart Center (in Mountain View, CA), along with Dr. Ranjini Krishnan (Cardiologist, Bellevue, WA) are participating. Please register; After registering, you will receive a confirmation email containing information about joining the meeting. ",
+    "url": "https://us02web.zoom.us/meeting/register/1XT0zf35TKenhJRERLGb4g",
+    "image": "/events/heart-panel-2026-flyer.jpeg",
+    "url_meet": "https://us02web.zoom.us/j/85443141264?pwd=g8yV1wkdC3HGtGZaXsb9uaV6R9Eyks.1",
+    "zoom_meeting_id": "854 4314 1264",
+    "zoom_passcode": "812662",
+    "panelists": [
+      {
+        "name": "Ashish Mathur",
+        "url": "https://www.linkedin.com/in/ashish-sahc/"
+      },
+      {
+        "name": "Anita Sathe",
+        "url": "https://www.linkedin.com/in/anita-sathe"
+      },
+      {
+        "name": "Dr. Ranjini Krishnan",
+        "url": "https://www.linkedin.com/in/ranjini-krishnan-aa9353121/"
+      },
+      {
+        "name": "Krish Sivakumar",
+        "url": "https://www.linkedin.com/in/krish-sivakumar-3aa7235"
+      }
+    ]
+  },
+  {
     "id": 8,
     "slug": "cegaana-early-career-first-paycheck-financial-freedom-2026",
     "title": "Early Career: From First Paycheck to Financial Freedom",
