@@ -17,7 +17,7 @@
     <meta name="twitter:title" content="CEGAANA | Home">
     <meta name="twitter:description" content="College of Engineering, Guindy Alumni Association of North America.">
     <meta name="twitter:image" content="https://cegaana.github.io/cegaana_logo.jpg">
-  <link rel="stylesheet" crossorigin href="/assets/styles-DMgwEEcp.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-grubS2br.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
     <script>
@@ -30,23 +30,13 @@
 </head>
 
 <body>
-    <header>
+    <header class="home-header">
         <h1><img src="/cegaana_logo.jpg" alt="CEGAANA Logo" class="header-logo"></h1>
         <!-- <p>College of Engineering, Guindy Alumni Association of North America</p> -->
     </header>
 
-    <div class="container">
-        <!-- Announcement Banner for 2026 Board Elections -->
-        <div class="announcement-banner">
-            <div class="announcement-badge">🗳️ Announcement</div>
-            <div class="announcement-content">
-                <strong>CEGAANA 2026 Board Elections:</strong> The board announces elections for 6 open seats (3-year
-                term: 2026–2029).
-                <a href="./blog/2026-elections/" class="announcement-link">Read election details & timeline &rarr;</a>
-            </div>
-        </div>
-
-        <div class="grid">
+    <div class="container home-container">
+        <div class="grid home-grid">
 
             <!-- <div class="cg-box">
                 <h2>Give online</h2>
@@ -57,8 +47,7 @@
             <div class="card card-giving card-tint-5">
                 <div>
                     <h4>Donate Now</h4>
-                    <p>Thanks for your support to Scholarships or CEG Betterment.</p>
-                    <p>Give securely. Your receipt is emailed instantly.</p>
+                    <p>Support Scholarships or CEG Betterment. Give securely &mdash; instant email receipt.</p>
                 </div>
                 <a href="https://donate.stripe.com/7sYfZ9bqs3vY53F3BO7N60d" class="btn btn-donate">Donate Now</a>
             </div>
@@ -67,49 +56,52 @@
             <div class="card card-giving card-tint-6">
                 <div>
                     <h4>Make a Pledge</h4>
-                    <p>Commit now and pay later by check, DAF grant, or employer match.</p>
-                    <p>Great for batch gifts and if donating via Benevity with an employer match. We'll email you
-                        payment details.</p>
+                    <p>Commit now, pay later (check, DAF, or employer match via Benevity).</p>
                 </div>
-                <a href="https://forms.gle/iyTi9WN9aBUjbrsW6" class="btn btn-pledge">Fill out the pledge form</a>
+                <a href="https://forms.gle/iyTi9WN9aBUjbrsW6" class="btn btn-pledge">Pledge Form</a>
             </div>
 
             <!-- Connect with Others -->
             <div class="card card-tint-4">
-                <h4>Connect with Others</h4>
-                <p>Join the official CEGAANA network to connect with alumni, explore career opportunities, and stay
-                    updated.</p>
+                <div>
+                    <h4>Connect with Others</h4>
+                    <p>Join the official CEGAANA network to connect with alumni, explore careers, and stay updated.</p>
+                </div>
                 <a href="./join/index.html" class="btn">Join CEGAANA</a>
             </div>
 
             <!-- Contribution Page -->
             <div class="card card-tint-1">
-                <h4>Support the Alma Mater</h4>
-                <p>Help us build a stronger CEG community through scholarships, betterment funds, and mentorship
-                    programs.</p>
+                <div>
+                    <h4>Support the Alma Mater</h4>
+                    <p>Help build a stronger CEG through scholarships, betterment funds, and student mentorship.</p>
+                </div>
                 <a href="./contribute" class="btn">Ways to Contribute</a>
             </div>
 
             <!-- CEG Betterment Page -->
             <div class="card card-tint-2">
-                <h4>CEG Betterment</h4>
-                <p>CEG Betterment focuses on enhancing the academic and living experience at CEG through strategic
-                    improvements to infrastructure, facilities, and support systems for students and faculty.</p>
+                <div>
+                    <h4>CEG Betterment</h4>
+                    <p>Enhancing campus academic and living infrastructure, facilities, and student support systems.</p>
+                </div>
                 <a href="./ceg-betterment.html" class="btn">CEG Betterment</a>
             </div>
 
             <!-- Events (Dynamic) -->
             <div class="card card-tint-3" id="events-card" style="display: none;">
-                <h4>Upcoming Events</h4>
-                <div id="events-list" style="margin-bottom: 15px; font-size: 0.9em;">
-                    <!-- Events will be injected here -->
+                <div>
+                    <h4>Upcoming Events</h4>
+                    <div id="events-list" style="margin-bottom: 6px; font-size: 0.85rem; line-height: 1.35;">
+                        <!-- Events will be injected here -->
+                    </div>
                 </div>
                 <a href="./events/index.html" class="btn">All Events</a>
             </div>
         </div>
     </div>
 
-    <footer>
+    <footer class="home-footer">
         <p>&copy; 2026 College of Engineering, Guindy Alumni Association of North America (CEGAANA).
             All Rights Reserved.</p>
     </footer>
@@ -130,7 +122,7 @@
                     const eventsCard = document.getElementById('events-card');
                     const eventsList = document.getElementById('events-list');
 
-                    eventsCard.style.display = 'block';
+                    eventsCard.style.display = 'flex';
 
                     if (events && Array.isArray(events)) {
                         const now = new Date();
@@ -140,19 +132,20 @@
 
                         if (upcomingEvents.length > 0) {
                             upcomingEvents.slice(0, 2).forEach(event => {
-                                const date = formatEventDate(event.date, { month: 'short', day: 'numeric', year: 'numeric' });
+                                const date = formatEventDate(event.date, { month: 'short', day: 'numeric' });
                                 const eventDiv = document.createElement('div');
+                                eventDiv.style.marginBottom = '3px';
                                 const eventTitleHTML = event.url
-                                    ? `<a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">${event.title}</a>`
-                                    : event.title;
-                                eventDiv.innerHTML = `<strong>${eventTitleHTML}</strong><br><span style="color: #666;">${date} &bull; ${event.location}</span>`;
+                                    ? `<a href="${event.url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; font-weight: 600;">${event.title}</a>`
+                                    : `<strong>${event.title}</strong>`;
+                                eventDiv.innerHTML = `${eventTitleHTML} <span style="color: #666; font-size: 0.82em;">&bull; ${date} (${event.location})</span>`;
                                 eventsList.appendChild(eventDiv);
                             });
                         } else {
-                            eventsList.innerHTML = '<p style="color: #666; font-style: italic; margin-bottom: 10px;">More events coming soon...</p>';
+                            eventsList.innerHTML = '<p style="color: #666; font-style: italic; margin-bottom: 4px;">More events coming soon...</p>';
                         }
                     } else {
-                        eventsList.innerHTML = '<p style="color: #666; font-style: italic; margin-bottom: 10px;">More events coming soon...</p>';
+                        eventsList.innerHTML = '<p style="color: #666; font-style: italic; margin-bottom: 4px;">More events coming soon...</p>';
                     }
                 })
                 .catch(error => console.error('Error fetching events:', error));

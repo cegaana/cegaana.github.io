@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://cegaana.github.io/events/" id="og-url">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" crossorigin href="/assets/styles-DMgwEEcp.css">
+  <link rel="stylesheet" crossorigin href="/assets/styles-grubS2br.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-DGHKYLW1CN"></script>
     <script>
@@ -126,9 +126,10 @@
             function createShareButton(event, isLight = false) {
                 const colorStyle = isLight ? 'color: inherit; opacity: 0.5;' : 'color: #64748b; opacity: 0.6;';
                 const escapedTitle = (event.title || '').replace(/'/g, "\\'");
+                const identifier = event.slug || (event.id ? `event-${event.id}` : '');
                 const iconSize = isLight ? '20' : '18';
                 return `
-                    <button onclick="copyEventLink(event, '${event.id}', '${escapedTitle}')" title="Copy Link to Share" style="position: absolute; top: 14px; right: 14px; background: none; border: none; cursor: pointer; ${colorStyle} transition: opacity 0.2s; z-index: 2;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${isLight ? '0.5' : '0.6'}'">
+                    <button onclick="copyEventLink(event, '${identifier}', '${escapedTitle}')" title="Copy Link to Share" style="position: absolute; top: 14px; right: 14px; background: none; border: none; cursor: pointer; ${colorStyle} transition: opacity 0.2s; z-index: 2;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='${isLight ? '0.5' : '0.6'}'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="${iconSize}" height="${iconSize}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="18" cy="5" r="3"></circle>
                             <circle cx="6" cy="12" r="3"></circle>
@@ -149,7 +150,10 @@
                 const cardTint = (index % 4) + 1;
 
                 const card = document.createElement('div');
-                card.id = `event-${event.id}`;
+                const cardIdentifier = event.slug || `event-${event.id}`;
+                card.id = cardIdentifier;
+                if (event.id) card.dataset.id = String(event.id);
+                if (event.slug) card.dataset.slug = event.slug;
                 card.className = `card card-tint-${cardTint} theme-${themeName}`;
                 card.style.backgroundColor = 'var(--theme-simple-bg, #ffffff)';
                 card.style.position = 'relative';
@@ -198,7 +202,10 @@
                 const themeName = event.theme || event.category || 'default';
 
                 const card = document.createElement('div');
-                card.id = `event-${event.id}`;
+                const cardIdentifier = event.slug || `event-${event.id}`;
+                card.id = cardIdentifier;
+                if (event.id) card.dataset.id = String(event.id);
+                if (event.slug) card.dataset.slug = event.slug;
                 card.className = `card-rich theme-${themeName}`;
 
                 let panelistsNamesHTML = '';
@@ -279,7 +286,10 @@
                 }
 
                 const item = document.createElement('div');
-                item.id = `event-${event.id}`;
+                const itemIdentifier = event.slug || `event-${event.id}`;
+                item.id = itemIdentifier;
+                if (event.id) item.dataset.id = String(event.id);
+                if (event.slug) item.dataset.slug = event.slug;
                 item.style.cssText = 'background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px 20px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,0.04); text-align: left;';
 
                 const eventTitleHTML = event.url
@@ -287,8 +297,7 @@
                     : `<strong style="color: #1e293b;">${event.title}</strong>`;
 
                 item.innerHTML = `
-                    ${createShareButton(event, false)}
-                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; padding-right: 32px;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;">
                         <h4 style="margin: 0; font-size: 1.05rem;">${eventTitleHTML} <span style="font-size: 0.8rem; font-weight: normal; color: #94a3b8;">(Completed)</span></h4>
                         <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">📅 ${dateStr}</span>
                     </div>
@@ -332,11 +341,16 @@
             function handleHashNavigation() {
                 if (!window.location.hash) return;
                 setTimeout(() => {
-                    const el = document.getElementById(window.location.hash.substring(1));
+                    const rawHash = window.location.hash.substring(1);
+                    const cleanHash = rawHash.replace(/^event-/, '');
+                    const el = document.getElementById(rawHash) ||
+                               document.getElementById(`event-${rawHash}`) ||
+                               document.querySelector(`[data-slug="${rawHash}"]`) ||
+                               document.querySelector(`[data-id="${rawHash}"]`) ||
+                               document.querySelector(`[data-id="${cleanHash}"]`);
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
 
-                    const eventId = window.location.hash.substring(1).replace('event-', '');
-                    const evt = allEvents.find(e => e.id == eventId);
+                    const evt = allEvents.find(e => e.slug === rawHash || e.slug === cleanHash || String(e.id) === rawHash || String(e.id) === cleanHash);
                     if (evt) {
                         const ogTitle = document.getElementById('og-title');
                         const ogDesc = document.getElementById('og-desc');
@@ -365,7 +379,7 @@
                 });
         });
 
-        function getShareUrl(id) {
+        function getShareUrl(identifier) {
             const loc = window.location;
             let basePath = loc.pathname;
             if (basePath.endsWith('.html')) {
@@ -374,15 +388,18 @@
             if (!basePath.endsWith('/')) {
                 basePath += '/';
             }
-            return loc.origin + basePath + `event-${id}.html`;
+            const file = (typeof identifier === 'string' && identifier.endsWith('.html'))
+                ? identifier
+                : `${identifier}.html`;
+            return loc.origin + basePath + file;
         }
 
         // Global copy function
-        window.copyEventLink = function copyEventLink(e, id, title) {
+        window.copyEventLink = function copyEventLink(e, identifier, title) {
             e.preventDefault();
             e.stopPropagation();
 
-            const shareUrl = getShareUrl(id);
+            const shareUrl = getShareUrl(identifier);
             const btn = e.currentTarget;
             const originalHTML = btn.innerHTML;
 
